@@ -30,7 +30,7 @@ class Likee
 
     /**
      * @var int|null
-     *
+     * 
      * @ORM\Column(name="id_commentaire", type="integer", nullable=true)
      */
     private $idCommentaire;
