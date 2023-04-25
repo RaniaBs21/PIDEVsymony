@@ -5,6 +5,7 @@ namespace App\Controller\BackendController;
 use App\Entity\Post;
 use App\Form\Post1Type;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,7 +74,7 @@ class PostController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    
     #[Route('/{idpost}', name: 'app_post_delete', methods: ['POST'])]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
@@ -84,4 +85,7 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+
+
 }
