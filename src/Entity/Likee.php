@@ -24,14 +24,16 @@ class Likee
     /**
      * @var int|null
      *
-     * @ORM\Column(name="id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="likee")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $id;
 
     /**
      * @var int|null
      * 
-     * @ORM\Column(name="id_commentaire", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commentaire", inversedBy="likee")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idCommentaire;
 
