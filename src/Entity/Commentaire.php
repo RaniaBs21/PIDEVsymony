@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Commentaire
@@ -26,6 +28,7 @@ class Commentaire
      * @var string
      *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank
      */
     private $contenu;
 
@@ -53,14 +56,14 @@ class Commentaire
     /**
      * @var int
      *
-     * @ORM\Column(name="nblike", type="integer", nullable=false)
+     * @ORM\Column(name="nblike", type="integer", nullable=true)
      */
     private $nblike = '0';
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbdislike", type="integer", nullable=false)
+     * @ORM\Column(name="nbdislike", type="integer", nullable=true)
      */
     private $nbdislike = '0';
 
@@ -98,6 +101,11 @@ class Commentaire
         $this->date = $date;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->date = new DateTime('now');
     }
 
     public function getId(): ?int

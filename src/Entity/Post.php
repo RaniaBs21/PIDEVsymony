@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -26,6 +28,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -33,6 +36,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $image;
 
@@ -41,7 +45,7 @@ class Post
      *
      * @ORM\Column(name="date", type="date", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $date = 'CURRENT_TIMESTAMP';
+    private $date ;
 
     /**
      * @var string|null
@@ -103,6 +107,10 @@ class Post
         $this->date = $date;
 
         return $this;
+    }
+    public function __construct()
+    {
+        $this->date = new DateTime('now');
     }
 
     public function getImagename(): ?string

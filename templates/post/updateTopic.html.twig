@@ -1,6 +1,4 @@
-
-
-<!DOCTYPE html>
+{#<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,14 +10,14 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-{% block css %}
+   {% block css %}
   <link href="{{asset('img/favicon.png')}}" rel="icon">
   <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Vendor CSS Files -->
   <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
@@ -379,69 +377,76 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+   
+      <h1>Ajouter Un Topic</h1>
       
-    </div><!-- End Page Title -->
+    </div>
+
+
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-14">
-
-        
+        <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-            <div>
+              <h5 class="card-title"></h5>
 
-              <h5 class="card-title">Table des posts</h5>
-                   <a href="{{ path('app_post_new')}}"> <span class="material-icons">note_add</span></a>
-            </div>        
-              <!-- sujet Table -->
-             
-             <div>
-             {% block body %}
-             <table class="table" >
-                <tr>
-                    {#<th scope="col">id</th>
-                    <th scope="col">titre</th>#}
-                    <th scope="col">Contenu</th>
-                     <th scope="col">Nb Com</th>
-                    <th scope="col">Date</th>
-                   
-                    
-                    <th scope="col">Actions</th>
-                  </tr>
-                {% for post in posts %}
-            <tr>
-                {#<td>{{ post.idpost }}</td>#}
-                <td><a href="{{ path('listcom') }}">{{ post.description }}</a></td>
-                <td>{{ post.nbCom }}</td>
-                <td>{{ post.date ? post.date|date('Y-m-d') : '' }}</td>
-               {# <td>{{ post.id }}</td>#}
-                <td>
-                    <a href="{{ path('app_post_show', {'idpost': post.idpost}) }}">show</a>
-                    <a href="{{ path('app_post_edit', {'idpost': post.idpost}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-                </table>
-                {% endblock %}
-             </div>
-             
-             
-             
-              <!-- End sujet Table  -->
+              
+              <form>
+               {{ form_start(formTopic) }}
+
+                    <div class="row mb-5">
+                        {{ form_label(formTopic.titretopic, 'Titre', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                        <div class="col-sm-6">
+                            {{ form_widget(formTopic.titretopic, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        {{ form_label(formTopic.description, 'Contenu', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                        <div class="col-sm-6">
+                            {{ form_widget(formTopic.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                   <div class="row mb-5">
+                        {{ form_label(formTopic.accepter, 'accepter', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                        <div class="col-sm-6">
+                            {{ form_widget(formTopic.accepter, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        {{ form_label(formTopic.nbsujet, 'nbsujet', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+                        <div class="col-sm-6">
+                            {{ form_widget(formTopic.nbsujet, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-warning">Ajouter</button>
+                        </div>
+                    </div>
+                {{ form_end(formTopic) }}
+              </form>
+
             </div>
           </div>
+
+        </div>
+
+        
+      </div>
+    </section>
+        
+
+         
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  {% block js %}
   <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
@@ -453,11 +458,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
-{% endblock %}
+
 </body>
 
-</html>
-
-
-
-
+</html>#}

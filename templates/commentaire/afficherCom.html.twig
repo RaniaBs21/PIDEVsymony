@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +10,14 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-{% block css %}
+   {% block css %}
   <link href="{{asset('img/favicon.png')}}" rel="icon">
   <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Vendor CSS Files -->
   <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
@@ -385,63 +383,52 @@
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-14">
+        <div class="col-lg-8">
 
         
-
           <div class="card">
             <div class="card-body">
-            <div>
-
-              <h5 class="card-title">Table des posts</h5>
-                   <a href="{{ path('app_post_new')}}"> <span class="material-icons">note_add</span></a>
-            </div>        
-              <!-- sujet Table -->
-             
-             <div>
-             {% block body %}
-             <table class="table" >
-                <tr>
-                    {#<th scope="col">id</th>
-                    <th scope="col">titre</th>#}
-                    <th scope="col">Contenu</th>
-                     <th scope="col">Nb Com</th>
+              <h5 class="card-title">Table des commentaires</h5>
+           
+              <!-- Active Table -->
+              <table class="table">
+               
+                  <tr>
+                    <th scope="col">contenu</th>
                     <th scope="col">Date</th>
-                   
+                    <th scope="col">Nb j'aime</th>
                     
-                    <th scope="col">Actions</th>
                   </tr>
-                {% for post in posts %}
-            <tr>
-                {#<td>{{ post.idpost }}</td>#}
-                <td><a href="{{ path('listcom') }}">{{ post.description }}</a></td>
-                <td>{{ post.nbCom }}</td>
-                <td>{{ post.date ? post.date|date('Y-m-d') : '' }}</td>
-               {# <td>{{ post.id }}</td>#}
-                <td>
-                    <a href="{{ path('app_post_show', {'idpost': post.idpost}) }}">show</a>
-                    <a href="{{ path('app_post_edit', {'idpost': post.idpost}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-                </table>
-                {% endblock %}
-             </div>
-             
-             
-             
-              <!-- End sujet Table  -->
+                  {% for commentaire in commentaires %}
+                
+                
+                  <tr>
+                  
+                    <td>{{commentaire.contenu}}</td>
+                    <td>{{commentaire.date.format("d/m/y")}}</td>
+                    <td>{{commentaire.nblike}}</td>
+                    
+                  </tr>
+                 {% endfor %}
+              </table>
+              <!-- End Active Table -->
+              
+
             </div>
           </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  {% block js %}
   <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
@@ -453,11 +440,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
-{% endblock %}
+
 </body>
 
 </html>
-
-
-
-

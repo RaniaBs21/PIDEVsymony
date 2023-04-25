@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<title>Post index</title>
+
+{% block body %}
+    <h1>Post index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idpost</th>
+                <th>Description</th>
+                <th>Nb Com</th>
+                <th>Date</th>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.idpost }}</td>
+                <td>{{ post.description }}</td>
+                <td>{{ post.nbCom }}</td>
+                <td>{{ post.date ? post.date|date('Y-m-d') : '' }}</td>
+                <td>{{ post.id }}</td>
+                <td>
+                    <a href="{{ path('app_post_show', {'idpost': post.idpost}) }}">show</a>
+                    <a href="{{ path('app_post_edit', {'idpost': post.idpost}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_post_new') }}">Create new</a>
+{% endblock %}
