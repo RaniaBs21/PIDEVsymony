@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cours
  *
- * @ORM\Table(name="cours", indexes={@ORM\Index(name="utilisateur", columns={"id"}), @ORM\Index(name="Sous_categorie", columns={"Sous_categorie"})})
+ * @ORM\Table(name="cours", indexes={@ORM\Index(name="Sous_categorie", columns={"Sous_categorie"}), @ORM\Index(name="utilisateur", columns={"id"})})
  * @ORM\Entity
  */
 class Cours
@@ -26,15 +28,22 @@ class Cours
      * @var string
      *
      * @ORM\Column(name="Titre_c", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Titre est obligatoire")
+     * @Assert\Length(min=1, max=255, minMessage="Titre doit contenir au moins {{ limit }} caractère", maxMessage="Titre doit contenir au maximum {{ limit }} caractères")
      */
+ 
     private $titreC;
 
-    /**
-     * @var int
+
+     /**
+     * @var SousCategorie
      *
-     * @ORM\Column(name="Sous_categorie", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SousCategorie", inversedBy="cours")
+     * @ORM\JoinColumn(name="Sous_categorie", referencedColumnName="ID_sc")
      */
     private $sousCategorie;
+
+
 
     /**
      * @var int
@@ -47,15 +56,18 @@ class Cours
      * @var string
      *
      * @ORM\Column(name="Fichier_c", type="blob", length=0, nullable=false)
+      * @Assert\File(
+     *  mimeTypes = {"image/jpeg", "image/png"},
+     *  mimeTypesMessage = "Veuillez insérer une image valide de type JPEG ou PNG ."
+     * )
      */
     private $fichierC;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
+      /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
+
 
     /**
      * @var string
@@ -69,22 +81,19 @@ class Cours
      *
      * @ORM\Column(name="date_c", type="date", nullable=false)
      */
-    private $dateC;
+   
+     private $dateC;
 
     /**
      * @var float
      *
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     * @Assert\GreaterThanOrEqual(1, message="Le prix ne peut pas être négatif ou nulle ")
      */
+     
     private $prix;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     */
-    private $id;
-
+    
     public function getIdC(): ?int
     {
         return $this->idC;
@@ -102,12 +111,12 @@ class Cours
         return $this;
     }
 
-    public function getSousCategorie(): ?int
+    public function getSousCategorie(): ?SousCategorie
     {
         return $this->sousCategorie;
     }
 
-    public function setSousCategorie(int $sousCategorie): self
+     public function setSousCategorie(?SousCategorie $sousCategorie): self
     {
         $this->sousCategorie = $sousCategorie;
 
@@ -137,19 +146,17 @@ class Cours
 
         return $this;
     }
-
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): self
+    public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
 
         return $this;
     }
-
     public function getDescriptionC(): ?string
     {
         return $this->descriptionC;
@@ -174,6 +181,16 @@ class Cours
         return $this;
     }
 
+    public function __construct()
+    {
+        $this->dateC = new DateTime('now');
+    }
+
+    public function getImageData()
+    {
+        return stream_get_contents($this->fichierC);
+    }
+    
     public function getPrix(): ?float
     {
         return $this->prix;
@@ -185,18 +202,5 @@ class Cours
 
         return $this;
     }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
 
 }
