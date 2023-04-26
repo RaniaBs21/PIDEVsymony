@@ -4,12 +4,16 @@ namespace App\Controller\BackendController;
 
 use App\Entity\Post;
 use App\Form\Post1Type;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/post')]
 class PostController extends AbstractController
@@ -87,5 +91,31 @@ class PostController extends AbstractController
     }
     
 
+  
+        #[Route('/recherche_ajax', name: 'recherche_ajax')]
+        public function rechercheAjax(Request $request, SerializerInterface $serializer,PostRepository $productRepository): JsonResponse
+        {
+            $requestString = $request->query->get('searchValue');
+
+            
+            if (empty($resultats)) {
+                return new JsonResponse(['message' => 'No reclamations found.'], Response::HTTP_OK);
+            }
+            
+            $data = [];
+
+            foreach ($resultats as $res) {
+                $data[] = [
+                    'description' => $res->getDescription(),
+                    'nbCom' => $res->getNbCom(),
+                    'date' => $res->getDate(),
+                    ];
+          
+            }
+
+            $json = $serializer->serialize($data, 'json', ['groups' => 'reclamations', 'max_depth' => 1]);
+
+            return new JsonResponse($json, Response::HTTP_OK, [], true);
+        }
 
 }

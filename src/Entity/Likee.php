@@ -24,7 +24,7 @@ class Likee
     /**
      * @var int|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="likee")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Admin", inversedBy="likee")
      * @ORM\JoinColumn(nullable=true)
      */
     private $id;
@@ -36,6 +36,13 @@ class Likee
      * @ORM\JoinColumn(nullable=false)
      */
     private $idCommentaire;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nblike", type="integer", nullable=true)
+     */
+    private $nblike = '0';
 
     public function getIdLike(): ?int
     {
@@ -66,5 +73,16 @@ class Likee
         return $this;
     }
 
+    public function getNblike(): ?int
+    {
+        return $this->nblike;
+    }
+
+    public function setNblike(int $nblike): self
+    {
+        $this->nblike = $nblike;
+
+        return $this;
+    }
 
 }

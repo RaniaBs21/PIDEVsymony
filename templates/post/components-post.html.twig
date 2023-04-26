@@ -56,7 +56,7 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <input type="text" class="form-control" id="myInput" placeholder="Search posts...">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -400,7 +400,7 @@
              
              <div>
              {% block body %}
-             <table class="table" >
+             <table class="table" id="myTable">
                 <tr>
                     {#<th scope="col">id</th>
                     <th scope="col">titre</th>#}
@@ -442,6 +442,7 @@
 
   <!-- Vendor JS Files -->
   {% block js %}
+
   <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
@@ -450,7 +451,18 @@
   <script src="{{asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
   <script src="{{asset('vendor/tinymce/tinymce.min.js')}}"></script>
   <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	console.log("hello");
+  $(document).ready(function () {
+  $("#myInput").on("keyup", function () {
+  var value = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function () {
+  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+  });
+  });
+</script>
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
 {% endblock %}

@@ -39,6 +39,17 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
+    public function findPostByDescription($description){
+        return $this->createQueryBuilder("s")
+           ->where('s.description LIKE :description')
+           ->setParameter('description', '%'.$description.'%')
+           ->getQuery()
+           ->getResult();
+        }
+        
+
+
+        
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

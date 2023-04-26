@@ -47,12 +47,7 @@ class Post
      */
     private $date ;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="imageName", type="string", length=100, nullable=true)
-     */
-    private $imagename;
+    
 
     /**
      * @var int|null
@@ -113,17 +108,7 @@ class Post
         $this->date = new DateTime('now');
     }
 
-    public function getImagename(): ?string
-    {
-        return $this->imagename;
-    }
-
-    public function setImagename(?string $imagename): self
-    {
-        $this->imagename = $imagename;
-
-        return $this;
-    }
+   
 
     public function getId(): ?int
     {
