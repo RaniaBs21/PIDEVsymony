@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class CoursController extends AbstractController
+class CourController extends AbstractController
 {
     #[Route('/post', name: 'post')]
     public function post(): Response
