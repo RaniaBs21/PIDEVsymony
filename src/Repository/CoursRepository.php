@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repository;
+
 use App\Entity\Cours;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -15,8 +16,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CoursRepository extends ServiceEntityRepository
 {
-
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Cours::class);
@@ -84,69 +83,23 @@ public function findBySousCategorie($sousCategorie)
 
 public function findCoursByTitre($titreC){
     return $this->createQueryBuilder("s")
-       ->where('s.titreC LIKE :titreC')
-       ->setParameter('titreC', '%'.$titreC.'%')
+       ->where('s.titre LIKE :titreC')
+       ->setParameter('titre', '%'.$titreC.'%')
        ->getQuery()
        ->getResult();
     }
 
+    /*public function findByCritere(string $searchTerm): array
+    {
+        $query = $this->createQueryBuilder('o')
+            ->leftJoin('o.sousCategorie', 'c')
+            ->andWhere(' o.titreC LIKE :searchTerm OR o.niveauC LIKE :searchTerm OR o.descriptionC  LIKE :searchTerm  OR o.dateC  LIKE :searchTerm ')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->getQuery();
+
+        return $query->getResult();
+    }*/
 
 
-
-
-
-
-
-//afficher un etudiant a partir d'un id de classroom
-public function ListStudentByClass($id)
-{
-return $this->createQueryBuilder(alias: 's')
-->join(join: 's.classroom',alias: 'c')
-->addSelect(select: 'c')
-->where(predicates:'c.id=:id')
-->setParameter('id',$id)
-->getQuery()
-->getResult();
-
-}
-
-
-public function findAllOrderByEmail()
-{
-    return $this->createQueryBuilder('s')
-        ->orderBy('s.email', 'ASC')
-        ->getQuery()
-        ->getResult();
-}
-
-
-
-public function findStudentByNsc($nsc)
-{
-    return $this->createQueryBuilder('s')
-        ->where('s.nsc = :nsc')
-        ->setParameter('nsc', $nsc)
-        ->getQuery()
-        ->getOneOrNullResult();
-}
-
-
-public function searchByNsc($nsc)
-{
-    $qb = $this->createQueryBuilder('s');
-    $qb->where('s.nsc LIKE :nsc')
-       ->setParameter('nsc', '%' . $nsc . '%');
-    return $qb->getQuery()->getResult();
-}
-
-
-public function findLastThree()
-{
-    return $this->createQueryBuilder('e')
-        ->orderBy('e.creation_date', 'DESC')
-        ->setMaxResults(3)
-        ->getQuery()
-        ->getResult();
-}
 
 }

@@ -17,9 +17,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use Prdh\RecaptchaBundle\Validator\Constraints\Recaptcha;
+use Psr\Log\LoggerInterface;
+use ReCaptcha\ReCaptcha as ReCaptchaReCaptcha;
+use VictorPrdh\RecaptchaBundle\RecaptchaBundle;
 
-class CourController extends AbstractController
+
+
+class CoursController extends AbstractController
+
 {
+    public function __construct(private LoggerInterface $logger, private SerializerInterface $serializer)
+    {
+
+    }
     #[Route('/post', name: 'post')]
     public function post(): Response
     {
@@ -103,11 +115,59 @@ class CourController extends AbstractController
             'cour' => $cour,
         ]);
     }
-
-
+ 
+   /* #[Route('/ajoutcours', name: 'ajoutcours')]
+    public function ajout(ManagerRegistry $doctrine, Request $request, Recaptcha $recaptcha): Response
+    {
+        $cours = new Cours();
+        $form = $this->createForm(CoursType::class, $cours);
+        $form->handleRequest($request);
+     
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Valider le recaptcha
+            $errors = $this->get('validator')->validate($request->request->get('recaptcha_response'), $recaptcha);
+            if (count($errors) === 0) {
+            $em = $doctrine->getManager();
     
-  
-  
+            // Ajoutez ce code pour gérer l'upload de l'image
+            $imageFile = $form->get('fichierC')->getData();
+            if ($imageFile) {
+                $imageName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $imageName.'-'.uniqid().'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+                $cours->setImageName($newFilename);
+            }
+            
+            $em->persist($cours);
+            $em->flush();
+    
+            // Ajouter un message de succès dans la session
+            $this->addFlash('success', 'Le cours a été ajouté avec succès.');
+    
+            return $this->redirectToRoute('ajoutcours');
+         } else {
+                // Gérer les erreurs de recaptcha
+                foreach ($errors as $error) {
+                    $this->addFlash('error', $error->getMessage());
+                }
+            }
+        } else if ($form->isSubmitted()) {
+            $this->addFlash('error', 'Le titre est obligatoire');
+        }
+    
+        return $this->render('cours/ajoutcours.html.twig', [
+            'formCours' => $form->createView(),
+            'imageName' => $cours->getImageName(),
+        ]);
+    }*/
+    
+
+
+
+
     #[Route('/ajoutcours', name: 'ajoutcours')]
     public function ajout(ManagerRegistry $doctrine, Request $request): Response
     {
@@ -115,15 +175,6 @@ class CourController extends AbstractController
         $form = $this->createForm(CoursType::class, $cours);
         $form->handleRequest($request);
 
-       /* if ($form->isSubmitted() && $form->isValid()) {
-            // Ajoutez ce code pour valider le champ Captcha
-            $captcha = $request->request->get('vivait_captcha') ?? [];
-            if (!isset($captcha['code']) || !$this->isCsrfTokenValid('vivait_captcha', $captcha['_token'])) {
-                $this->addFlash('error', 'Le code Captcha est incorrect.');
-                return $this->redirectToRoute('ajoutcours');
-            }
-        
-        }*/
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $doctrine->getManager();
     
@@ -156,8 +207,6 @@ class CourController extends AbstractController
         ]);
     }
     
-
-
 
 
 
@@ -257,5 +306,57 @@ public function show($idC, $imageName, ManagerRegistry $doctrine): Response
         'imageName' => $imageName
     ]);
 }
+
+   #[Route('/recherche_ajax', name:'recherche_ajax')]
+    
+        public function rechercheAjax(Request $request, SerializerInterface $serializer,CoursRepository $courRepository): JsonResponse
+        {
+            $requestString = $request->query->get('searchValue');
+
+            $resultats = $courRepository->findCoursByTitre($requestString);
+
+            if (empty($resultats)) {
+                return new JsonResponse(['message' => 'No cours found.'], Response::HTTP_OK);
+            }
+            
+            $data = [];
+
+            foreach ($resultats as $res) {
+                $data[] = [
+                    'titreC' => $res->getTitreC(),
+                    'sousCategorie' => $res->getSousCategorie(),
+                    'niveauC' => $res->geNiveauC(),
+                    'descriptionC' => $res->getDescriptionC(),
+                    'dateC' => $res->getDateC(),
+                    'prix' => $res->getPrix(),
+
+                    ];
+            }
+
+            $json = $serializer->serialize($data, 'json', ['groups' => 'cours', 'max_depth' => 1]);
+
+            return new JsonResponse($json, Response::HTTP_OK, [], true);
+        }
+
+     /*   /**
+     * @throws ExceptionInterface
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     */
+      /*  #[Route('/search', name: 'courSearch')]
+        public function searchAction(Request $request, CoursRepository $courRepository): Response
+        {
+            $searchTerm = $request->query->get('query');
+    
+            $cours = $courRepository->findByCritere($searchTerm);
+    
+            $jsonContent = $this->serializer->serialize($cours, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getIdC();
+                }
+            ]);
+    
+            return new Response($jsonContent);
+        }*/
+
 
 }

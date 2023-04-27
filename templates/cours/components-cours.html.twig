@@ -39,41 +39,6 @@
 </head>
 
 
-<!-- jQuery -->
-	<script src="../back-office/vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../back-office/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- FastClick -->
-	<script src="../back-office/vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../back-office/vendors/nprogress/nprogress.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script src="../back-office/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="../back-office/vendors/iCheck/icheck.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="../back-office/vendors/moment/min/moment.min.js"></script>
-	<script src="../back-office/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap-wysiwyg -->
-	<script src="../back-office/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script src="../back-office/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-	<script src="../back-office/vendors/google-code-prettify/src/prettify.js"></script>
-	<!-- jQuery Tags Input -->
-	<script src="../back-office/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-	<!-- Switchery -->
-	<script src="../back-office/vendors/switchery/dist/switchery.min.js"></script>
-	<!-- Select2 -->
-	<script src="../back-office/vendors/select2/dist/js/select2.full.min.js"></script>
-	<!-- Parsley -->
-	<script src="../back-office/vendors/parsleyjs/dist/parsley.min.js"></script>
-	<!-- Autosize -->
-	<script src="../back-office/vendors/autosize/dist/autosize.min.js"></script>
-	<!-- jQuery autocomplete -->
-	<script src="../back-office/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-	<!-- starrr -->
-	<script src="../back-office/vendors/starrr/dist/starrr.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="../back-office/build/js/custom.min.js"></script>
 
 <body>
 
@@ -90,8 +55,7 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" id="myInput" name="query" placeholder="Search" title="Enter search keyword">
-
+      <input type="text" class="form-control" id="myInput" placeholder="Search...">
 
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
@@ -377,9 +341,8 @@
 
           
 
-           
               <!-- Default Table -->
-              <table class="table"  id="myTable">
+               <table class="table"  id="myTable">               
                 <thead>
                   <tr>
                 
@@ -411,25 +374,12 @@
                   </tr>
                   {% endfor %}
                   </table>
+                  <tbody id="searchtab">
+                  </tbody>
                   </div>
                  </tbody>
               
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		console.log("hello");
-$(document).ready(function () {
-
-$("#myInput").on("keyup", function () {
-
-var value = $(this).val().toLowerCase();
-$("#myTable ").filter(function () {
-$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-});
-});
-});
-	</script>
+ 
 
               <!-- End light Table Example -->
             </div>
@@ -456,9 +406,9 @@ $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+{% block js %}
   <!-- Vendor JS Files -->
-  <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
+<script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
   <script src="{{asset('vendor/echarts/echarts.min.js')}}"></script>
@@ -466,10 +416,21 @@ $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
   <script src="{{asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
   <script src="{{asset('vendor/tinymce/tinymce.min.js')}}"></script>
   <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	console.log("hello");
+  $(document).ready(function () {
+  $("#myInput").on("keyup", function () {
+  var value = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function () {
+  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+  });
+  });
+</script>
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
-
+{% endblock %}
 </body>
 
 </html>
