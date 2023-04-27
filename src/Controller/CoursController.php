@@ -104,7 +104,7 @@ class CoursController extends AbstractController
         ]);
     }
 
-   
+
     
   
   
