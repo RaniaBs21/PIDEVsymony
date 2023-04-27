@@ -25,7 +25,7 @@ use VictorPrdh\RecaptchaBundle\RecaptchaBundle;
 
 
 
-class CoursController extends AbstractController
+class CourController extends AbstractController
 
 {
     public function __construct(private LoggerInterface $logger, private SerializerInterface $serializer)
