@@ -7,26 +7,28 @@ use App\Form\PostFrontType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Constraints\File;
+
+
 
 class UserPostController extends AbstractController
 {
     #[Route('/user/post', name: 'app_user_post')]
-    public function listPost(PostRepository $postrepo): Response
+    public function listPost(PostRepository $postrepo /*, PaginatorInterface $paginator, Request $request*/): Response
     {
         $post = $postrepo->findAll();
+        
         return $this->render('user_post/index.html.twig', [
             'post' => $post,
+            
         ]);
     }
-
-
    
     #[Route('/user/post/new', name: 'new_post', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -135,4 +137,7 @@ class UserPostController extends AbstractController
 
             return new JsonResponse($json, Response::HTTP_OK, [], true);
         }
+
+
+        
 }
