@@ -34,12 +34,12 @@ class UserCommentaireController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $this->addFlash('success', 'Votre commentaire est bien ajouté ');
                 $entityManager->persist($commentaire);
                 $entityManager->flush();
-
+               
                 return $this->redirectToRoute('app_user_commentaire', [], Response::HTTP_SEE_OTHER);
             }
-
             return $this->renderForm('user_commentaire/addCom.html.twig', [
                 'commentaire' => $commentaire,
                 'form' => $form,

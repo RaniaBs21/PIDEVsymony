@@ -63,6 +63,8 @@
 
     </div>
   </header><!-- End Header -->
+
+
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -84,9 +86,13 @@
         <div class="row g-6">
   
          
-         
+        
           <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            
+             {% for type, messages in app.session.flashbag.all() %}
+                  {% for message in messages %}
+                      <div class="alert alert-{{ type }}">{{ message }}</div>
+                  {% endfor %}
+                {% endfor %}
             <div class="row gy-5 posts-list">
             {% for post in post %}
               <div class="col-lg-6" id="myArticle">

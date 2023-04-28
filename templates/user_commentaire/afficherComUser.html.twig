@@ -70,9 +70,9 @@
       <div class="container position-relative d-flex flex-column align-items-center">
 
         <h2>Post Details</h2>
-        
-
+         
       </div>
+      
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Details Section ======= -->
@@ -85,6 +85,11 @@
             <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
                 
                 {% block body %}
+                {% for type, messages in app.session.flashbag.all() %}
+      {% for message in messages %}
+          <div class="alert alert-{{ type }}">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
                 <h1>Commentaires</h1>
                <article class="blog-details">
                <a href="{{ path('new_comment')}}"> <span class="material-icons">note_add</span></a>

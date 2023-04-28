@@ -45,6 +45,7 @@ class UserPostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             // Get the uploaded file
             $file = $form['image']->getData();
 
@@ -63,6 +64,8 @@ class UserPostController extends AbstractController
             // Persist and flush the Produit object to your database
             $entityManager->persist($post);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'Votre Post est bien ajouté ');
 
             // Redirect to the list of produits
             return $this->redirectToRoute('app_user_post', [], Response::HTTP_SEE_OTHER);
