@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Post
  *
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post
 {
-    /**
+       /**
      * @var int
      *
      * @ORM\Column(name="idPost", type="integer", nullable=false)

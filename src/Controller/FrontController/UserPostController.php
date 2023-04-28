@@ -20,12 +20,19 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserPostController extends AbstractController
 {
     #[Route('/user/post', name: 'app_user_post')]
-    public function listPost(PostRepository $postrepo /*, PaginatorInterface $paginator, Request $request*/): Response
+    public function listPost( PostRepository $postrepo , PaginatorInterface $paginator, Request $request): Response
     {
         $post = $postrepo->findAll();
         
+        // Paginer la liste des quiz
+        $postPaginated = $paginator->paginate(
+            $post,
+            $request->query->getInt('page', 1),
+            4 // Nombre d'éléments par page
+        );
+
         return $this->render('user_post/index.html.twig', [
-            'post' => $post,
+            'post' => $postPaginated,
             
         ]);
     }
@@ -108,6 +115,8 @@ class UserPostController extends AbstractController
         {
             return $this->render('user_post/search.html.twig', ['query' => (string) $request->query->get('q', '')]);
         }
+
+
         #[Route('/recherche_ajax', name: 'recherche_ajax')]
         public function rechercheAjax(Request $request, SerializerInterface $serializer,PostRepository $productRepository): JsonResponse
         {
@@ -139,5 +148,5 @@ class UserPostController extends AbstractController
         }
 
 
-        
+      
 }

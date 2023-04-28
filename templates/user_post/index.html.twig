@@ -29,6 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('css/main.css')}}" rel="stylesheet">
+  <link href="{{asset('css/rating.css')}}" rel="stylesheet">
 {% endblock %}
 </head>
 
@@ -102,12 +103,23 @@
                         {{post.description}}
                         </p>
                       </div>
+                     <div>
+                          <div class="stars">
+                          <a>⭐</a>
+                          <a>⭐</a>
+                          <a>⭐</a>
+                          <a>⭐</a>
+                          <a>⭐</a>
+                          </div>
+                     </div>
+
                       <div class="meta-top">
                         <ul>
                           <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{path ('app_post_front_show', {'idpost': post.idpost})}}">Rania</a></li>
                           <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{path ('app_post_front_show', {'idpost': post.idpost})}}"><time datetime="2022-01-01">{{ post.date ? post.date|date('Y-m-d') : '' }}</time></a></li>
                           <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{path ('app_post_front_show', {'idpost': post.idpost})}}">{{post.nbCom}}</a></li>
                         </ul>
+                        
                       </div>
                       <br/>
 
@@ -125,9 +137,7 @@
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+               <li>{{ knp_pagination_render(post) }}</li>
               </ul>
             </div><!-- End blog pagination -->
 
@@ -199,8 +209,12 @@
   });
   });
 </script>
+  
+  
+
   <!-- Template Main JS File -->
   <script src="{{asset('js/mainfront.js')}}"></script>
+  <script src="{{asset('js/rating.js')}}"></script>
 {% endblock %}
 </body>
 

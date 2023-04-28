@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use blackknight467\StarRatingBundle\StarRatingBundle;
 
 class PostFrontType extends AbstractType 
 {
@@ -30,6 +31,7 @@ class PostFrontType extends AbstractType
                     ])
                 ],
             ])
+            
            /* ->add('date')
             ->add('id')
             ->add('nbcom')*/
