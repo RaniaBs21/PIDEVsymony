@@ -4,6 +4,7 @@ namespace App\Controller\FrontController;
 
 use App\Entity\Post;
 use App\Form\PostFrontType;
+use App\Repository\BadWordsFilter;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class UserPostController extends AbstractController
 {
+
+
     #[Route('/user/post', name: 'app_user_post')]
     public function listPost( PostRepository $postrepo , PaginatorInterface $paginator, Request $request): Response
     {
@@ -150,6 +153,8 @@ class UserPostController extends AbstractController
             return new JsonResponse($json, Response::HTTP_OK, [], true);
         }
 
+
+        
 
       
 }

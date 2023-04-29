@@ -70,7 +70,7 @@ class Commentaire
     /**
      * @var int|null
      *
-     * @ORM\Column(name="Id_Post", type="integer", nullable=true)
+     *@ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="post")
      */
     private $idPost;
 
