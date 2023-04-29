@@ -81,4 +81,17 @@ public function finAll(): array{
     ->getResult ()
     ;
 }
+
+
+
+public function countByCategorie()
+{
+    $qb = $this->createQueryBuilder('c')
+        ->select('sc.nomCat as categorieCours, COUNT(c) as nbCategorie')
+        ->join('c.categorieCours', 'sc')
+        ->groupBy('categorieCours')
+        ->getQuery();
+
+    return $qb->getResult();
+}
 }

@@ -100,6 +100,12 @@ public function findCoursByTitre($titreC){
         return $query->getResult();
     }*/
 
-
+    public function findAllOrderedByTitle(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.titreC', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 }

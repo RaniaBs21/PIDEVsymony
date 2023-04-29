@@ -203,4 +203,10 @@ class Cours
         return $this;
     }
 
+  
+
+    public function getId(): int {
+        return $this->idC;
+    }
+
 }
