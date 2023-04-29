@@ -54,7 +54,7 @@ class EvenementController extends AbstractController
     #[Route('/quiz', name: 'quiz')]
     public function quiz(): Response
     {
-        return $this->render('quiz/components-quiz.html.twig', [
+        return $this->render('quiz/components-quiz.html.twig.twig', [
             'controller_name' => 'QuizController',
         ]);
     }

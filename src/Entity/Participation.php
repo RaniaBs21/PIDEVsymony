@@ -23,6 +23,13 @@ class Participation
     private $idPart;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_participation", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $dateParticipation = 'CURRENT_TIMESTAMP';
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -36,16 +43,21 @@ class Participation
      */
     private $idEv;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_participation", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $dateParticipation = 'CURRENT_TIMESTAMP';
-
     public function getIdPart(): ?int
     {
         return $this->idPart;
+    }
+
+    public function getDateParticipation(): ?\DateTimeInterface
+    {
+        return $this->dateParticipation;
+    }
+
+    public function setDateParticipation(\DateTimeInterface $dateParticipation): self
+    {
+        $this->dateParticipation = $dateParticipation;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -68,18 +80,6 @@ class Participation
     public function setIdEv(int $idEv): self
     {
         $this->idEv = $idEv;
-
-        return $this;
-    }
-
-    public function getDateParticipation(): ?\DateTimeInterface
-    {
-        return $this->dateParticipation;
-    }
-
-    public function setDateParticipation(\DateTimeInterface $dateParticipation): self
-    {
-        $this->dateParticipation = $dateParticipation;
 
         return $this;
     }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cours
  *
- * @ORM\Table(name="cours", indexes={@ORM\Index(name="utilisateur", columns={"id"}), @ORM\Index(name="Sous_categorie", columns={"Sous_categorie"})})
+ * @ORM\Table(name="cours", indexes={@ORM\Index(name="Sous_categorie", columns={"Sous_categorie"}), @ORM\Index(name="utilisateur", columns={"id"})})
  * @ORM\Entity
  */
 class Cours
@@ -49,13 +49,6 @@ class Cours
      * @ORM\Column(name="Fichier_c", type="blob", length=0, nullable=false)
      */
     private $fichierC;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
-     */
-    private $imageName;
 
     /**
      * @var string
@@ -134,18 +127,6 @@ class Cours
     public function setFichierC($fichierC): self
     {
         $this->fichierC = $fichierC;
-
-        return $this;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(?string $imageName): self
-    {
-        $this->imageName = $imageName;
 
         return $this;
     }

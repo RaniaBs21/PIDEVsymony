@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="{{asset('css/index1.css')}}">
+</head>
+{% block body %}
+<body>
+    <div class="mainHomePage">
+        <form action="{{ path('search_question_quiz') }}" method="get">
+            <div class="searchBox">
+                <input type="text" name="search" placeholder="Search what you want to learn" autofocus>
+                <input type="submit" value="Search">
+            </div>
+        </form>
+ </div>
+    <nav class="menu" id="navbar">
+        <ul class="container">
+            <li>       <a href="#"><img src="{{asset('img/home.png')}}" alt="" width="40px" height="40px" ><p>back to home </p></a>
+            </li>
+
+        </ul>
+        <ul class="login">
+            <li>
+                <a href="#" class="secondary">Log in</a>
+                <a href="#" class="primary">Sign up</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="main-content">
+        <a href="{{ path('app_index')}}">
+            <div class="item button-jittery" style="--bg-color: #f1c40f;">
+            {% set question_quiz = question_quizzes[0] %}
+                <div>  <button>Test 1</button></div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+            </div>
+        </a>
+            <a href="{{ path('app_index')}}">
+                <div class="item button-jittery" style="--bg-color: #e67e22;">
+
+                {% set question_quiz = question_quizzes[1] %}
+                <div><button>Test 2</button></div>
+            <div class="name"><div>{{question_quiz.descQuestion }}</div></div>
+                </div>
+            </a>
+
+
+
+    <a href="{{ path('app_index')}}">
+        <div class="item button-typewriter" style="--bg-color: #f55647;">
+            <div class="button__wrapper">
+                {% set question_quiz = question_quizzes[2] %}
+                <button>
+                    <p>Test 3</p>
+
+                </button>
+            </div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+        </div>
+    </a>
+
+    <a href="{{ path('app_index')}}">
+        <div class="item button-pressure" style="--bg-color: #9b59b6;">
+            {% set question_quiz = question_quizzes[3] %}
+            <div> <button>Test 4
+                    <marquee scrollamount="12"><span>Your friends would do it.</span><span>Your mum would be proud.</span><span>Your partner would be so happy.</span><span>Your cat would love you for it.</span></marquee>
+                </button></div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+        </div>
+    </a>
+
+    <a href="{{ path('app_index')}}">
+        <div class="item button-hand" style="--bg-color: #3471a1;">
+            {% set question_quiz = question_quizzes[4] %}
+            <div>  <button>Test 5
+                    <div class="hands"></div>
+                </button></div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+        </div>
+    </a>
+
+    <a href="{{ path('app_index')}}">
+
+        <div class="item button-100" style="--bg-color:#2ecc71;">
+            {% set question_quiz = question_quizzes[5] %}
+            <div> <button>Test 6
+                    <div class="emoji"></div>
+                    <div class="emoji"></div>
+                    <div class="emoji"></div>
+                </button></div>
+
+            <div class="name">{{question_quiz.descQuestion }} 💯</div>
+        </div>
+    </a>
+
+    <a href="{{ path('app_index')}}">
+        <div class="item button-parrot" style="--bg-color: #2c3e50;">
+            {% set question_quiz = question_quizzes[6] %}
+            <div>  <button>Test 7
+                    <div class="parrot"></div>
+                    <div class="parrot"></div>
+                    <div class="parrot"></div>
+                    <div class="parrot"></div>
+                    <div class="parrot"></div>
+                    <div class="parrot"></div>
+                </button></div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+        </div>
+    </a>
+
+    <a href="{{ path('app_index')}}">
+        <div class="item button-rainbow" style="--bg-color: #d09900;">
+            {% set question_quiz = question_quizzes[7] %}
+            <div> <button>Test 8
+                    <div class="rainbow"></div>
+
+                </button></div>
+
+            <div class="name">{{question_quiz.descQuestion }}</div>
+        </div>
+    </a>
+
+    <script src="{{asset ('js/script.js') }}"></script>
+</div>
+
+{% endblock  %}
+
+</body>
+
+</html>

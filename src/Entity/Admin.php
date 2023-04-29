@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Admin
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="nom_u", type="string", length=255, nullable=true)
@@ -68,17 +77,10 @@ class Admin
      */
     private $pwd;
 
-    /**
-     * @var \Topic
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Topic")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="iduser")
-     * })
-     */
-    private $id;
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNomU(): ?string
     {
@@ -172,18 +174,6 @@ class Admin
     public function setPwd(string $pwd): self
     {
         $this->pwd = $pwd;
-
-        return $this;
-    }
-
-    public function getId(): ?Topic
-    {
-        return $this->id;
-    }
-
-    public function setId(?Topic $id): self
-    {
-        $this->id = $id;
 
         return $this;
     }

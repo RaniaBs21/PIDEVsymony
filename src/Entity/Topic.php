@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Topic
  *
- * @ORM\Table(name="topic", indexes={@ORM\Index(name="iduser", columns={"iduser"}), @ORM\Index(name="utilisateur", columns={"iduser"})})
+ * @ORM\Table(name="topic", indexes={@ORM\Index(name="fk_userid", columns={"iduser"}), @ORM\Index(name="utilisateur", columns={"id"})})
  * @ORM\Entity
  */
 class Topic
@@ -48,19 +48,19 @@ class Topic
      *
      * @ORM\Column(name="accepter", type="boolean", nullable=false)
      */
-    private $accepter = '0';
+    private $accepter;
 
     /**
      * @var int
      *
      * @ORM\Column(name="nbsujet", type="integer", nullable=false)
      */
-    private $nbsujet = '0';
+    private $nbsujet;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="iduser", type="integer", nullable=false)
+     * @ORM\Column(name="iduser", type="integer", nullable=true)
      */
     private $iduser;
 
@@ -69,7 +69,7 @@ class Topic
      *
      * @ORM\Column(name="hide", type="integer", nullable=false)
      */
-    private $hide = '0';
+    private $hide;
 
     /**
      * @var string|null
@@ -77,6 +77,13 @@ class Topic
      * @ORM\Column(name="imageName", type="string", length=255, nullable=true)
      */
     private $imagename;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     */
+    private $id;
 
     public function getIdtopic(): ?int
     {
@@ -148,7 +155,7 @@ class Topic
         return $this->iduser;
     }
 
-    public function setIduser(int $iduser): self
+    public function setIduser(?int $iduser): self
     {
         $this->iduser = $iduser;
 
@@ -175,6 +182,18 @@ class Topic
     public function setImagename(?string $imagename): self
     {
         $this->imagename = $imagename;
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
         return $this;
     }

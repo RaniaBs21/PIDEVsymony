@@ -58,13 +58,6 @@ class Evenement
     private $adresseEv;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="region", type="string", length=30, nullable=false)
-     */
-    private $region;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_ev", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
@@ -84,6 +77,13 @@ class Evenement
      * @ORM\Column(name="id_g", type="integer", nullable=false)
      */
     private $idG;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=30, nullable=false)
+     */
+    private $region;
 
     public function getIdEv(): ?int
     {
@@ -150,18 +150,6 @@ class Evenement
         return $this;
     }
 
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function setRegion(string $region): self
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
     public function getDateEv(): ?\DateTimeInterface
     {
         return $this->dateEv;
@@ -194,6 +182,18 @@ class Evenement
     public function setIdG(int $idG): self
     {
         $this->idG = $idG;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

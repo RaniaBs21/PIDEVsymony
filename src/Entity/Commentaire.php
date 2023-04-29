@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commentaire
  *
- * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="fk_idusercom", columns={"id"}), @ORM\Index(name="fk_idsujet", columns={"idsujet"}), @ORM\Index(name="Id_Post", columns={"Id_Post"})})
+ * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="fk_idsujet", columns={"idsujet"}), @ORM\Index(name="fk_idusercom", columns={"id"})})
  * @ORM\Entity
  */
 class Commentaire
@@ -55,21 +55,14 @@ class Commentaire
      *
      * @ORM\Column(name="nblike", type="integer", nullable=false)
      */
-    private $nblike = '0';
+    private $nblike;
 
     /**
      * @var int
      *
      * @ORM\Column(name="nbdislike", type="integer", nullable=false)
      */
-    private $nbdislike = '0';
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="Id_Post", type="integer", nullable=true)
-     */
-    private $idPost;
+    private $nbdislike;
 
     public function getIdcom(): ?int
     {
@@ -144,18 +137,6 @@ class Commentaire
     public function setNbdislike(int $nbdislike): self
     {
         $this->nbdislike = $nbdislike;
-
-        return $this;
-    }
-
-    public function getIdPost(): ?int
-    {
-        return $this->idPost;
-    }
-
-    public function setIdPost(?int $idPost): self
-    {
-        $this->idPost = $idPost;
 
         return $this;
     }

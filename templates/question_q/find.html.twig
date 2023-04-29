@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="search-box">
+        {% if not searchTerm is defined %}
+            <form action="{{ path('search_question_quiz') }}" method="GET">
+
+            </form>
+        {% endif %}
+    </div>
+    {% if searchTerm is defined %}
+        <ul class="list-group">
+            {% if questionQuizList is not empty %}
+                {% for questionQuiz in questionQuizList %}
+                    <li class="list-group-item">{{ questionQuiz.descQuestion }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item">No results found for "{{ searchTerm }}".</li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

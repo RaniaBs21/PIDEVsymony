@@ -23,13 +23,6 @@ class Produit
     private $idProd;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_cat_prod", type="integer", nullable=false)
-     */
-    private $idCatProd;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Type_Prod", type="string", length=20, nullable=false)
@@ -57,21 +50,16 @@ class Produit
      */
     private $url;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_cat_prod", type="integer", nullable=false)
+     */
+    private $idCatProd;
+
     public function getIdProd(): ?int
     {
         return $this->idProd;
-    }
-
-    public function getIdCatProd(): ?int
-    {
-        return $this->idCatProd;
-    }
-
-    public function setIdCatProd(int $idCatProd): self
-    {
-        $this->idCatProd = $idCatProd;
-
-        return $this;
     }
 
     public function getTypeProd(): ?string
@@ -118,6 +106,18 @@ class Produit
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getIdCatProd(): ?int
+    {
+        return $this->idCatProd;
+    }
+
+    public function setIdCatProd(int $idCatProd): self
+    {
+        $this->idCatProd = $idCatProd;
 
         return $this;
     }

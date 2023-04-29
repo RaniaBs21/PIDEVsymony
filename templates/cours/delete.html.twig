@@ -1,0 +1,17 @@
+{% block body %}
+    <h1>Supprimer le cours "{{ cours.titreC }}"</h1>
+
+    <p>Êtes-vous sûr(e) de vouloir supprimer le cours "{{ cours.titreC }}" ? Cette action est irréversible.</p>
+
+    <button type="button" class="btn btn-danger" id="delete-cours">Supprimer</button>
+
+    <a href="{{ path('listCours') }}" class="btn btn-secondary mt-3">Annuler</a>
+
+    <script>
+        document.getElementById('delete-cours').addEventListener('click', function() {
+            if (confirm('Êtes-vous sûr(e) de vouloir supprimer ce cours ? Cette action est irréversible.')) {
+                window.location.href = "{{ path('deleteCours', {'idC': cours.idC}) }}";
+            }
+        });
+    </script>
+{% endblock %}

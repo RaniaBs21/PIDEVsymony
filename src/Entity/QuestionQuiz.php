@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * QuestionQuiz
  *
- * @ORM\Table(name="question_quiz", indexes={@ORM\Index(name="id_quiz_2", columns={"id_quiz"}), @ORM\Index(name="id_quiz", columns={"id_quiz"})})
+ * @ORM\Table(name="question_quiz")
  * @ORM\Entity
  */
 class QuestionQuiz
@@ -29,14 +29,11 @@ class QuestionQuiz
     private $descQuestion;
 
     /**
-     * @var \Quiz
+     * @var int|null
      *
-     * @ORM\ManyToOne(targetEntity="Quiz")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_quiz", referencedColumnName="id_quiz")
-     * })
+     * @ORM\Column(name="idQuiz", type="integer", nullable=true)
      */
-    private $idQuiz;
+    private $idquiz;
 
     public function getIdQuest(): ?int
     {
@@ -55,14 +52,14 @@ class QuestionQuiz
         return $this;
     }
 
-    public function getIdQuiz(): ?Quiz
+    public function getIdquiz(): ?int
     {
-        return $this->idQuiz;
+        return $this->idquiz;
     }
 
-    public function setIdQuiz(?Quiz $idQuiz): self
+    public function setIdquiz(?int $idquiz): self
     {
-        $this->idQuiz = $idQuiz;
+        $this->idquiz = $idquiz;
 
         return $this;
     }

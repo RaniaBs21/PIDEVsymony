@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=644c3d2b9efe970019773cf3&product=inline-share-buttons&source=platform" async="async"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/quiz-final.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div><div class="sharethis-inline-share-buttons"></div></div>
+
+    {% if score > 200 %}
+        <div class="container">
+            <div class="flex-center flex-column">
+                <h2 class="congratulations">Congratulations!</h2>
+                <p class="score">Your score is {{ new }}</p>
+                <p class="emoji">🎉👏🎉👏</p>
+                <a href="{{ path('quiz_save_score')}}" class="btn">Save Score<i class="fas fa-home"></i></a>
+                <a href="{{ path('app_quiz')}}" class="btn">Play Again</a>
+                <a href="{{ path('app_index')}}" class="btn">Go Home<i class="fas fa-home"></i></a>
+            </div>
+        </div>
+    {% elseif score > 100 %}
+        <div class="container">
+            <div class="flex-center flex-column">
+                <h2 class="motivation">Good effort!</h2>
+                <p class="score">Your score is {{ new }}</p>
+                <p class="emoji">👍👍</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="flex-center flex-column">
+                <h2 class="motivation">Vous pouvez faire mieux!</h2>
+                <p class="score">Your score is {{ new }}</p>
+                <p class="emoji">👊👊</p>
+
+            </div>
+        </div>
+
+    {% endif %}
+    <style>.congratulations {
+            font-size: 3rem;
+            color: green;
+            animation: rotate 1s infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .motivation {
+            font-size: 3rem;
+            color: orange;
+            animation: shake 1s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-20px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(20px); }
+            100% { transform: translateX(0); }
+        }
+
+        .emoji {
+            font-size: 5rem;
+            margin-top: 2rem;
+        }
+    </style>
+
+    <div id="end" class="flex-center flex-column">
+
+
+        <p>Votre score est : {{ new }}</p>
+        <h2 id="end-text">Enter your name below to save your score!</h2>
+
+
+        <button class="btn" type="submit" form="score-form" onclick="window.location.href='{{ path('quiz_save_score')}}'">Save<i class="fas fa-home"></i></button>
+
+        <a href="{{path('app_quiz')}}" class="btn">Play Again</a>
+        <a href="{{path('app_index')}}" class="btn">Go Home<i class="fas fa-home"></i>  </a>
+        <a href="{{path('send_sms')}}" class="btn">Envoyer resultat<i class="fas fa-home"></i>  </a>
+    </div>
+
+
+</div>
+<script src="{{asset('js/end.js')}}"></script>
+<script>
+    var scoreElement = document.getElementById("finalScore");
+    var score = scoreElement.getAttribute("onclick").match(/\d+/)[0];
+    console.log(score);
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="emoji.js"></script>
+<link rel="stylesheet" type="text/css" href="csshake.min.css">
+
+<script src="https://kit.fontawesome.com/d56261bbb9.js"></script>
+</body>
+</html>
