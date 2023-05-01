@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller\FrontController;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -43,15 +43,6 @@ class ReponseAss
      */
     private $descriptionRepAss;
 
-    /**
-     * @var \Reclamation
-     *
-     * @ORM\ManyToOne(targetEntity="Reclamation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Id_Rec", referencedColumnName="Id_Rec")
-     * })
-     */
-    private $idRec;
 
     public function getIdRepAss(): ?int
     {
@@ -90,18 +81,6 @@ class ReponseAss
     public function setDescriptionRepAss(string $descriptionRepAss): self
     {
         $this->descriptionRepAss = $descriptionRepAss;
-
-        return $this;
-    }
-
-    public function getIdRec(): ?Reclamation
-    {
-        return $this->idRec;
-    }
-
-    public function setIdRec(?Reclamation $idRec): self
-    {
-        $this->idRec = $idRec;
 
         return $this;
     }

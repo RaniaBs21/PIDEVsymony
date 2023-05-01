@@ -1,0 +1,29 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Vos Questions</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type Question</th>
+                <th>Description Question</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for question_ass in question_asses %}
+            <tr>
+                <td>{{ question_ass.typeQAss }}</td>
+                <td>{{ question_ass.descriptionQAss }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_questionass_front_new2') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Modifier la reponse</h1>
+
+    {{ include('reponse_ass/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_reponse_ass_index') }}">back to list</a>
+
+    {{ include('reponse_ass/_delete_form.html.twig') }}
+{% endblock %}

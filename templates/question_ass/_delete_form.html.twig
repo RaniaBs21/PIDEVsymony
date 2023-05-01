@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form method="post" action="{{ path('app_question_ass_delete', {'idQAss': question_ass.idQAss}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ question_ass.idQAss) }}">
+        <button class="btn">Delete</button>
+    </form>
+{% endblock %}
+

@@ -51,13 +51,6 @@ class Cours
     private $fichierC;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="image_name", type="string", length=255, nullable=true)
-     */
-    private $imageName;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Description_c", type="text", length=0, nullable=false)
@@ -134,18 +127,6 @@ class Cours
     public function setFichierC($fichierC): self
     {
         $this->fichierC = $fichierC;
-
-        return $this;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(?string $imageName): self
-    {
-        $this->imageName = $imageName;
 
         return $this;
     }

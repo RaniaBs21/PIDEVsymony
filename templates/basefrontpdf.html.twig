@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}ArtPlus{%endblock%}</title>
+
+
+  <!-- Favicons -->
+   
+</head>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url({{asset('img/blog-header.jpg')}}">
+      <div class="container position-relative d-flex flex-column align-items-center">
+
+        <h2>Assistance</h2>
+        
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Details Section ======= -->
+
+                {% block body %}
+
+
+    
+               {% endblock %}
+            
+
+            </div>
+        </div>
+
+      </div>
+      
+    </section><!-- End Blog Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+ 
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+ {% block js %}
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{asset('vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{asset('js/mainfront.js')}}"></script>
+{% endblock %}
+
+</body>
+
+</html>
+

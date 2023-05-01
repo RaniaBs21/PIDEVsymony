@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Question</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question_ass.idQAss }}</td>
+            </tr>
+            <tr>
+                <th>Type question</th>
+                <td>{{ question_ass.typeQAss }}</td>
+            </tr>
+            <tr>
+                <th>Description question</th>
+                <td>{{ question_ass.descriptionQAss }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_ass_index') }}">back to list</a>
+
+    <a href="{{ path('app_question_ass_edit', {'idQAss': question_ass.idQAss}) }}">edit</a>
+
+    {{ include('question_ass/_delete_form.html.twig') }}
+{% endblock %}

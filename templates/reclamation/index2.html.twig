@@ -1,0 +1,59 @@
+
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Vos Reclamations</h1>
+    <form action="{{ path('app_reclamation_front_search2') }}" method="get">
+        <div class="form-group">
+            <label for="typeRec">Type Rec:</label>
+            <input type="text" class="form-control" id="typeRec" name="typeRec" value="{{ app.request.query.get('typeRec') }}">
+        </div>
+        <div class="form-group">
+            <label for="sort">Sort by:</label>
+            <select class="form-control" id="sort" name="sort">
+                <option value="idRec" {% if app.request.query.get('sort') == 'idRec' %}selected{% endif %}>IdRec</option>
+                <option value="typeRec" {% if app.request.query.get('sort') == 'typeRec' %}selected{% endif %}>TypeRec</option>
+                <option value="descriptionRec" {% if app.request.query.get('sort') == 'descriptionRec' %}selected{% endif %}>DescriptionRec</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="direction">Direction:</label>
+            <select class="form-control" id="direction" name="direction">
+                <option value="asc" {% if app.request.query.get('direction') == 'asc' %}selected{% endif %}>Asc</option>
+                <option value="desc" {% if app.request.query.get('direction') == 'desc' %}selected{% endif %}>Desc</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type du reclamation</th>
+                <th>Description du reclamation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.typeRec }}</td>
+                <td>{{ reclamation.descriptionRec }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_front_show2', {'idRec': reclamation.idRec}) }}">show</a>
+                    <a href="{{ path('app_reclamation_front_edit2', {'idRec': reclamation.idRec}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_front_new2') }}">Create new</a>
+
+   <button onclick="window.location.href='{{path ('app_question_ass_front_index2')}}'">Posez votre Question ici !</button>
+
+
+{% endblock %}

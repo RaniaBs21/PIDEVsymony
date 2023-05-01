@@ -1,3 +1,73 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_question_ass_search:
+    path: /searchQ
+    controller: App\Controller\BackendController\QuestionAssController::search
+    methods: [GET, POST]
+app_reponse_ass_search:
+    path: /searchR
+    controller: App\Controller\BackendController\ReponseAssController::search 
+    methods: [GET, POST]
+app_reclamation_search:
+    path: /searchRec
+    controller: App\Controller\BackendController\ReclamationController::search 
+    methods: [GET, POST]
+app_question_ass_front_search:
+    path: /searchQf
+    controller: App\Controller\BackendController\QuestionAssFrontController::search
+    methods: [GET, POST]
+app_reclamation_index:
+    path: /reclamation/
+    controller: App\Controller\BackendController\ReclamationController::index
+    methods: [GET]
+
+app_reclamation_new:
+    path: /reclamation/new
+    controller: App\Controller\BackendController\ReclamationController::new
+    methods: [GET, POST]
+
+app_reclamation_show:
+    path: /reclamation/{idRec}
+    controller: App\Controller\BackendController\ReclamationController::show
+    methods: [GET]
+
+app_reclamation_edit:
+    path: /reclamation/{idRec}/edit
+    controller: App\Controller\BackendController\ReclamationController::edit
+    methods: [GET, POST]
+
+app_reclamation_delete:
+    path: /reclamation/{idRec}
+    controller: App\Controller\BackendController\ReclamationController::delete
+    methods: [POST]
+
+app_reclamation_front_index:
+    path: /reclamation/front
+    controller: App\Controller\BackendController\ReclamationfrontController::index
+    methods: [GET]
+
+app_reclamation_front_new:
+    path: /reclamation/front/new
+    controller: App\Controller\BackendController\ReclamationfrontController::new
+    methods: [GET, POST]
+
+app_reclamation_front_show:
+    path: /reclamation/front/{idRec}
+    controller: App\Controller\BackendController\ReclamationfrontController::show
+    methods: [GET]
+
+app_reclamation_front_edit:
+    path: /reclamation/front/{idRec}/edit
+    controller: App\Controller\BackendController\ReclamationfrontController::edit
+    methods: [GET, POST]
+
+app_reclamation_front_delete:
+    path: /reclamation/front/{idRec}
+    controller: App\Controller\BackendController\ReclamationfrontController::delete
+    methods: [POST]
+
+app_reclamation_front_search:
+    path: /reclamation/front/searchRec
+    controller: App\Controller\BackendController\ReclamationfrontController::search
+    methods: [GET, POST]

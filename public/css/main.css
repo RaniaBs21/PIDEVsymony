@@ -1077,9 +1077,6 @@ section {
   color: var(--color-secondary);
   margin: 0;
 }
-.card-title{
-  font-style: rgb(248, 220, 3);
-}
 
 /*--------------------------------------------------------------
 # Testimonials Section

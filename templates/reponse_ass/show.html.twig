@@ -1,0 +1,33 @@
+{% extends 'basefrontpdf.html.twig' %}
+
+{% block body %}
+    <h1 style="color: #007bff;">Reponse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reponse_ass.idRepAss }}</td>
+            </tr>
+            <tr>
+                <th>Type Reponse</th>
+                <td>{{ reponse_ass.typeRepAss }}</td>
+            </tr>
+            <tr>
+                <th>Question correspondante</th>
+                <td>{{ reponse_ass.queRepAss }}</td>
+            </tr>
+            <tr>
+                <th>Description Reponse</th>
+                <td>{{ reponse_ass.descriptionRepAss }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reponse_ass_index') }}">back to list</a>
+
+    <a href="{{ path('app_reponse_ass_edit', {'idRepAss': reponse_ass.idRepAss}) }}">edit</a>
+
+    {{ include('reponse_ass/_delete_form.html.twig') }}
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdRec</th>
+                <td>{{ reclamation.idRec }}</td>
+            </tr>
+            <tr>
+                <th>TypeRec</th>
+                <td>{{ reclamation.typeRec }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionRec</th>
+                <td>{{ reclamation.descriptionRec }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_front_index2') }}">back to list</a>
+
+    <a href="{{ path('app_reclamation_front_edit2', {'idRec': reclamation.idRec}) }}">edit</a>
+
+    {{ include('reclamation/_delete_form2.html.twig') }}
+{% endblock %}

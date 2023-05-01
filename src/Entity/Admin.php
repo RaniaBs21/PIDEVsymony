@@ -68,15 +68,12 @@ class Admin
      */
     private $pwd;
 
-    /**
-     * @var \Topic
+       /**
+     * @var int
      *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Topic")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="iduser")
-     * })
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -176,17 +173,21 @@ class Admin
         return $this;
     }
 
-    public function getId(): ?Topic
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(?Topic $id): self
+    public function setId(int $id): self
     {
         $this->id = $id;
 
         return $this;
     }
-
+    public function __toString()
+    {
+        return $this->nomU . ' ' . $this->prenomU;
+    }
+    
 
 }
