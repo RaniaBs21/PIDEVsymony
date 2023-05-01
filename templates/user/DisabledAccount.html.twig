@@ -1,0 +1,39 @@
+
+    
+{% extends 'baseFront.html.twig' %}
+
+
+
+      {% block  section %} 
+
+<body>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto">
+                    <div class="card-body px-5 py-5">
+                        <h3 style="color: chartreuse;"class="card-title text-center mb-3">{{ app.user.username }}</h3>
+
+                        <form method="post">
+                            {% if app.user %}
+                                <div class="form-group">
+                                    <p class="sign-up">
+                                        You are seeing this message as your account Has been Deactivated by one of our Admins.<br>
+                                        Contact us on Our email <span style="color: #62b2c9;border-bottom: 2px dotted #05d7a0;margin-left: 5px;">Souha.Sasou@gmail.com</span>.</p>
+                                </div>
+                            {% endif %}
+                            <div class="text-center">
+                                <a class="btn btn-danger btn-block enter-btn" href="{{ path('app_logout') }}"><i class="mdi mdi-arrow-right-bold-hexagon-outline"></i> Log out </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+
+  {% endblock %}

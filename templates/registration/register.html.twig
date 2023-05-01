@@ -1,0 +1,87 @@
+
+{% extends 'baseFront.html.twig' %}
+
+
+     {% block section %} 
+    <body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body px-5 py-5">
+                            <h3 class="card-title text-center mb-3">Sign up</h3>
+
+                            {{ form_start(registrationForm , {'attr' : {'novalidate' : 'novalidate'}}) }}
+                            {{ form_errors(registrationForm.firstname  , {'attr' : {'class' : ' alert alert-danger label'}}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-account"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.firstname  , {'attr' : {'class' : 'form-control p_input' , 'placeholder' : 'first name'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.lastname  , {'attr' : {'class' : 'label' }}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-account"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.lastname  , {'attr' : {'class' : 'form-control p_input' , 'placeholder' : 'last name'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.email  , {'attr' : {'class' : 'label' }}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-email"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.email  , {'attr' : {'class' : 'form-control ' , 'placeholder' : 'email'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.plainPassword  , {'attr' : {'class' : 'label' }}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-lock"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.plainPassword  , {'attr' : {'class' : 'form-control' , 'placeholder' : 'Password','novalidate' : 'novalidate'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.phone_number  , {'attr' : {'class' : 'label'}}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-cellphone"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.phone_number  , {'attr' : {'class' : 'form-control' , 'placeholder' : 'Phone Number'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.usertag  , {'attr' : {'class' : 'label' }}) }}
+                            <div class="input-group input-group-merge input-group-alternative mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="mdi mdi-cellphone"></i></span>
+                                </div>
+                                {{ form_widget(registrationForm.usertag  , {'attr' : {'class' : 'form-control' , 'placeholder' : 'Username'}}) }}
+                            </div>
+                            {{ form_errors(registrationForm.agreeTerms  , {'attr' : {'class' : 'label'}}) }}
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <div class="form-check">
+                                    {{ form_label(registrationForm.agreeTerms, 'Agree to the terms and services' , {'label_attr' : {'class' : 'form-check-label'}}) }}
+                                    {{ form_widget(registrationForm.agreeTerms  , {'attr' : {'class' : 'form-check-input'}} ) }}
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Sign up</button>
+                            </div>
+                            {{ form_end(registrationForm) }}
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <a href="{{ path('app_login') }}" class="forgot-pass"><small>Login</small></a>
+                                <a href="{{ path('app_forgotten_password') }}" class="forgot-pass"><small>Forgot password?</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    
+    </body>
+    
+ {% endblock %}

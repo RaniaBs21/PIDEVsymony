@@ -1,0 +1,65 @@
+ <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Phone number</th>
+                                        <th>Roles</th>
+                                        <th>Password</th>
+                                        <th>full name</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for user in Users%}
+                                        <tr>
+                                            <td>{{ user.usertag }}</td>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.phonenumber }}</td>
+
+                                            <td>
+                                                {% for role in user.roles %}
+                                                    {% if role == 'ROLE_ADMIN' %}
+                                                        <label class="badge badge-success">ADMIN</label>
+                                                    {% elseif role == 'ROLE_PLAYER'%}
+                                                        <label class="badge badge-info">PLAYER</label>
+                                                    {% elseif role == 'ROLE_USER' %}
+                                                        <label class="badge badge-warning">USER</label>
+                                                    {% elseif role == 'ROLE_PRODUCT' %}
+                                                        <label class="badge badge-primary">Product Manager</label>
+                                                    {% elseif role == 'ROLE_PURCHASE' %}
+                                                        <label class="badge badge-primary">Purchase Manager</label>
+                                                    {% elseif role == 'ROLE_RECLAMATION' %}
+                                                        <label class="badge badge-primary">Reclamation Manager</label>
+                                                    {% elseif role == 'ROLE_EVENT' %}
+                                                        <label class="badge badge-primary">Event Manager</label>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+
+                                            <td>Crypted</td>
+                                            <td>{{ user.firstname ~ " " ~ user.lastname}}</td>
+
+                                            <td style="width: 30%;">
+                                                <a class="btn btn-outline-primary btn-fw" href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                                                <a class="btn btn-outline-primary btn-fw" href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                                                {% if (app.user.id == user.id) %}
+                                                    <a class="btn btn-outline-dark btn-fw" href="{{ path('disable_user', {'id': user.id}) }}" style="pointer-events: none">disable</a>
+                                                {% else %}
+                                                    {% if ( user.disabletoken) %}
+                                                        <a class="btn btn-outline-success btn-fw" href="{{ path('enable_user', {'id': user.id}) }}">enable</a>
+                                                    {% else %}
+                                                        <a class="btn btn-outline-danger btn-fw" href="{{ path('disable_user', {'id': user.id}) }}">disable</a>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                            </td>
+                                        </tr>
+
+ {% endfor %}
+
+                                   
+
+                                    </tbody>
+                                </table>
