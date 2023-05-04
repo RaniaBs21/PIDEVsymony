@@ -29,7 +29,7 @@ class QuizFrontController extends AbstractController
 
 
 
-#[Route('/quiz/userHighScore/{Id}', name: 'quiz_user_high_score')]
+    #[Route('/quiz/userHighScore/{Id}', name: 'quiz_user_high_score')]
 
     public function getUserHighScore(int $Id, EntityManagerInterface $entityManager): Response
     {
@@ -65,7 +65,7 @@ class QuizFrontController extends AbstractController
     #[Route('/resultat', name: 'app_result')]
     public function resultat(): Response
     {
-     return $this->redirectToRoute('result');
+        return $this->redirectToRoute('result');
     }
     #[Route('/front', name: 'front_question')]
     public function quizAction(): Response
