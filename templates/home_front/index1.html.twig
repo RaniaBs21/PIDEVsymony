@@ -7,48 +7,48 @@
     <title>Home Page</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="{{asset('css/index1.css')}}">
+    <link rel="stylesheet" href="{{asset('css/index1.css')}}">
 </head>
 {% block body %}
 <body>
-    <div class="mainHomePage">
-        <form action="{{ path('search_question_quiz') }}" method="get">
-            <div class="searchBox">
-                <input type="text" name="search" placeholder="Search what you want to learn" autofocus>
-                <input type="submit" value="Search">
-            </div>
-        </form>
- </div>
-    <nav class="menu" id="navbar">
-        <ul class="container">
-            <li>       <a href="#"><img src="{{asset('img/home.png')}}" alt="" width="40px" height="40px" ><p>back to home </p></a>
-            </li>
+<div class="mainHomePage">
+    <form action="{{ path('search_question_quiz') }}" method="get">
+        <div class="searchBox">
+            <input type="text" name="search" placeholder="Search what you want to learn" autofocus>
+            <input type="submit" value="Search">
+        </div>
+    </form>
+</div>
+<nav class="menu" id="navbar">
+    <ul class="container">
+        <li>       <a href="#"><img src="{{asset('img/home.png')}}" alt="" width="40px" height="40px" ><p>back to home </p></a>
+        </li>
 
-        </ul>
-        <ul class="login">
-            <li>
-                <a href="#" class="secondary">Log in</a>
-                <a href="#" class="primary">Sign up</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="main-content">
-        <a href="{{ path('app_index')}}">
-            <div class="item button-jittery" style="--bg-color: #f1c40f;">
+    </ul>
+    <ul class="login">
+        <li>
+            <a href="#" class="secondary">Log in</a>
+            <a href="#" class="primary">Sign up</a>
+        </li>
+    </ul>
+</nav>
+<div class="main-content">
+    <a href="{{ path('app_index')}}">
+        <div class="item button-jittery" style="--bg-color: #f1c40f;">
             {% set question_quiz = question_quizzes[0] %}
-                <div>  <button>Test 1</button></div>
+            <div>  <button>Test 1</button></div>
 
             <div class="name">{{question_quiz.descQuestion }}</div>
-            </div>
-        </a>
-            <a href="{{ path('app_index')}}">
-                <div class="item button-jittery" style="--bg-color: #e67e22;">
+        </div>
+    </a>
+    <a href="{{ path('app_index')}}">
+        <div class="item button-jittery" style="--bg-color: #e67e22;">
 
-                {% set question_quiz = question_quizzes[1] %}
-                <div><button>Test 2</button></div>
+            {% set question_quiz = question_quizzes[1] %}
+            <div><button>Test 2</button></div>
             <div class="name"><div>{{question_quiz.descQuestion }}</div></div>
-                </div>
-            </a>
+        </div>
+    </a>
 
 
 
