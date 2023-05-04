@@ -1,0 +1,73 @@
+{% extends 'home_front/basefront.html.twig' %}
+
+{% block body %}
+{#
+ 
+                <div class="card-body">
+                <b class="text-muted">Titre:</b>
+                <p>{{ evenement.titreEv }}</p>
+                <b class="text-muted">Categorie:</b>
+                <p>{{ evenement.categorieEv }}</p>
+                <b class="text-muted">Description:</b>
+                <p>{{ evenement.descriptionEv }}</p>
+                <b class="text-muted">Date de l'évènement:</b>
+                <p>{{  evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</p>
+                <b class="text-muted">Localisation:</b>
+                <p>{{ evenement.adresseEv }}</p>
+                <b class="text-muted">Région:</b>
+                <p>{{ evenement.region }}</p>
+                <b class="text-muted">Nombres de places à réserver:</b>
+                <p>{{ evenement.nbrePlaces }}</p>
+                #}
+ <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{asset('img/about_the_eif.jpg')}}')">
+    
+      <div class="container position-relative d-flex flex-column align-items-center">
+
+        <h2>Evenement</h2>
+        <ol>
+          <li><a href="{{ path('app_event_front') }}">Home</a></li>
+          <li>Evenement</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+ 
+<section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            <article class="blog-details">
+
+              <div class="post-img">
+                <img src="{{ path('evenement_show', {'id': evenement.idEv}) }}" alt="" class="img-fluid"  /></a>
+              </div>
+
+              <h2 class="title"> {{evenement.titreEv }}</h2>
+
+              <div class="meta-top">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="blog-details.html">{{ evenement.adresseEv }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{  evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>                    
+                </ul>
+              </div><!-- End meta top -->
+
+              <div class="content">
+                <p>
+                 {{ evenement.descriptionEv }} 
+                </p>
+
+              </div><!-- End post content -->
+            </article><!-- End blog post -->
+
+
+          </div>      
+        </div>
+      </div>
+</section><!-- End Blog Details Section -->
+
+
+{% endblock %}

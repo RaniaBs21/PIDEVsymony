@@ -1,0 +1,449 @@
+{% extends 'home_front/basefront.html.twig' %}
+
+{% block title %}Evenements{% endblock %}
+
+{% block body %}
+    {# <h1>Tous les événements</h1>
+    <div class="row">
+        {% for evenement in evenements %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ evenement.titreEv }}</h5>
+                        <p class="card-text">{{ evenement.descriptionEv }}</p>
+                        <p class="card-text"><strong>Date:</strong> {{ evenement.dateEv|date('d/m/Y H:i') }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %} #}
+        
+    </div><main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{asset('img/about_the_eif.jpg')}}')">
+    
+      <div class="container position-relative d-flex flex-column align-items-center">
+
+        <h2>Evenement</h2>
+        <ol>
+          <li><a href="{{ path('app_event_front') }}">Home</a></li>
+          <li>Evenement</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    {#{% for categorie in categories %}
+    {% for region in regions %}
+        <a href="{{ path('filter_evenements', {'region': region, 'categorie': categorie}) }}">
+            Voir les événements pour la région {{ region }} et la catégorie {{ categorie }}
+        </a>
+    {% endfor %}
+    {% endfor %}#}
+    {% for type, messages in app.session.flashbag.all() %}
+      {% for message in messages %}
+          <div class="alert alert-{{ type }}">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
+{#
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            {% for evenement in evenements %}
+            <div class="row gy-5 posts-list">
+
+              <div class="col-lg-6">
+                <article class="d-flex flex-column">
+                  <div class="post-img">
+#}                    {#<img src="{{ path('app_event_image', { 'idEv': evenement.idEv }) }}" alt="" class="img-fluid"/>#}
+                    {#<img src="{{ asset('/img/img1.png') }}"  alt="" class="img-fluid" /></a>#}
+{#                    <img src="{{ path('evenement_show', {'id': evenement.idEv}) }}"  />
+                  </div>
+
+                  <h2 class="title">
+                    <a href="blog-details.html">{{ evenement.titreEv }}</a>
+                  </h2>
+
+                  <div class="meta-top">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="blog-details.html">{{ evenement.adresseEv }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{  evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="content">
+                    <p>{{ evenement.descriptionEv }}</p>
+#}                  </div>
+                  {#<div class="form-group">
+                      <a href="{{ path('app_participation_new') }}"><button class="btn float-right {{ button_color|default('btn btn-warning') }}  mt-3">{{ button_label|default('Participer') }}</button></a>
+                  </div>#}
+                  
+{#                {% if evenement.getNbrePlaces() > 0 %}
+                  <form method="post" action="{{ path('app_event_participate', {'idEv': evenement.idEv}) }}">
+                    <button type="submit" class="btn btn-primary">Participer</button>
+                  </form>
+                {% else %}
+                    <p>L'événement est complet.</p>
+                {% endif %}
+                  <div class="read-more mt-auto align-self-end">
+                  <a href="{{ path('app_event_show', {'idEv': evenement.idEv}) }}">Plus de détails<i class="bi bi-arrow-right"></i></a>
+                
+                  </div>
+
+                </article>
+              </div><!-- End post list item -->
+
+            </div><!-- End blog posts list -->
+            {% endfor %}
+#}
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                {% for evenement in evenements %}
+                    {% if loop.index % 2 == 1 %}
+                        <div class="row gy-5 posts-list">
+                    {% endif %}
+                    <div class="col-lg-6">
+                        <article class="d-flex flex-column">
+                            <div class="post-img">
+                                <img src="{{ path('evenement_show', {'id': evenement.idEv}) }}" class="post-image" />
+                            </div>
+                            <h2 class="title">
+                                <a href="blog-details.html">{{ evenement.titreEv }}</a>
+                            </h2>
+                            <div class="meta-top">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="blog-details.html">{{ evenement.adresseEv }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{ evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <p>{{ evenement.descriptionEv }}</p>
+                            </div>
+                            {% if evenement.getNbrePlaces() > 0 %}
+                                <form method="post" action="{{ path('app_event_participate', {'idEv': evenement.idEv}) }}">
+                                    <button type="submit" class="btn btn-primary">Participer</button>
+                                </form>
+                            {% else %}
+                                <p>L'événement est complet.</p>
+                            {% endif %}
+                            <div class="read-more mt-auto align-self-end">
+                                <a href="{{ path('app_event_show', {'idEv': evenement.idEv}) }}">Plus de détails<i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                    {% if loop.index % 2 == 0 or loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="blog-pagination">
+                    <ul class="justify-content-center">
+                        <li>{{ knp_pagination_render(evenements) }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .posts-list .col-lg-6 {
+        margin-bottom: 30px;
+    }
+    .post-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+
+            <div class="sidebar ps-lg-4">
+
+              <div class="sidebar-item search-form">
+                <h3 class="sidebar-title">Search</h3>
+                <form action="" class="mt-3">
+                  <input type="text">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              <div class="sidebar-item categories">
+                <h3 class="sidebar-title">Catégories</h3>
+                <ul class="mt-3">
+                  <li><a href="#">Art <span>(25)</span></a></li>
+                  <li><a href="#">Culture <span>(12)</span></a></li>
+                  <li><a href="#">Musique <span>(5)</span></a></li>
+                  <li><a href="#">Sport <span>(22)</span></a></li>
+                  <li><a href="#">religieux <span>(8)</span></a></li>
+                </ul>
+              </div><!-- End sidebar categories-->
+
+            </div><!-- End Blog Sidebar -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+    <style>
+    .posts-list .col-lg-6 {
+        margin-bottom: 30px;
+    }
+    .post-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+////*************tri_evenement
+
+{% extends 'home_front/basefront.html.twig' %}
+
+{% block title %}Evenements{% endblock %}
+
+{% block body %}
+    {# <h1>Tous les événements</h1>
+    <div class="row">
+        {% for evenement in evenements %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ evenement.titreEv }}</h5>
+                        <p class="card-text">{{ evenement.descriptionEv }}</p>
+                        <p class="card-text"><strong>Date:</strong> {{ evenement.dateEv|date('d/m/Y H:i') }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %} #}
+        
+    </div><main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{asset('img/about_the_eif.jpg')}}')">
+    
+      <div class="container position-relative d-flex flex-column align-items-center">
+
+        <h2>Evenement</h2>
+        <ol>
+          <li><a href="{{ path('app_event_front') }}">Home</a></li>
+          <li>Evenement</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    {#{% for categorie in categories %}
+    {% for region in regions %}
+        <a href="{{ path('filter_evenements', {'region': region, 'categorie': categorie}) }}">
+            Voir les événements pour la région {{ region }} et la catégorie {{ categorie }}
+        </a>
+    {% endfor %}
+    {% endfor %}#}
+    {% for type, messages in app.session.flashbag.all() %}
+      {% for message in messages %}
+          <div class="alert alert-{{ type }}">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
+{#
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            {% for evenement in evenements %}
+            <div class="row gy-5 posts-list">
+
+              <div class="col-lg-6">
+                <article class="d-flex flex-column">
+                  <div class="post-img">
+#}                    {#<img src="{{ path('app_event_image', { 'idEv': evenement.idEv }) }}" alt="" class="img-fluid"/>#}
+                    {#<img src="{{ asset('/img/img1.png') }}"  alt="" class="img-fluid" /></a>#}
+{#                    <img src="{{ path('evenement_show', {'id': evenement.idEv}) }}"  />
+                  </div>
+
+                  <h2 class="title">
+                    <a href="blog-details.html">{{ evenement.titreEv }}</a>
+                  </h2>
+
+                  <div class="meta-top">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="blog-details.html">{{ evenement.adresseEv }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{  evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="content">
+                    <p>{{ evenement.descriptionEv }}</p>
+#}                  </div>
+                  {#<div class="form-group">
+                      <a href="{{ path('app_participation_new') }}"><button class="btn float-right {{ button_color|default('btn btn-warning') }}  mt-3">{{ button_label|default('Participer') }}</button></a>
+                  </div>#}
+                  
+{#                {% if evenement.getNbrePlaces() > 0 %}
+                  <form method="post" action="{{ path('app_event_participate', {'idEv': evenement.idEv}) }}">
+                    <button type="submit" class="btn btn-primary">Participer</button>
+                  </form>
+                {% else %}
+                    <p>L'événement est complet.</p>
+                {% endif %}
+                  <div class="read-more mt-auto align-self-end">
+                  <a href="{{ path('app_event_show', {'idEv': evenement.idEv}) }}">Plus de détails<i class="bi bi-arrow-right"></i></a>
+                
+                  </div>
+
+                </article>
+              </div><!-- End post list item -->
+
+            </div><!-- End blog posts list -->
+            {% endfor %}
+#}
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+        <!-- Liste déroulante pour sélectionner le critère de tri -->
+            <label for="select-tri">Trier par:</label>
+            <select id="select-tri">
+            <option value="date">Date</option>
+            <option value="lieu">Lieu</option>
+            <option value="type">Catégorie</option>
+            </select>
+
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="sidebar ps-lg-4">
+                    <div class="sidebar-item search-form">
+                        <h3 class="sidebar-title">Search</h3>
+                        <form action="" class="mt-3">
+                            <input type="text">
+                            <button type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="sidebar-item categories">
+                        <h3 class="sidebar-title">Catégories</h3>
+                        <ul class="mt-3">
+                            <li><a href="#">Art <span>(25)</span></a></li>
+                            <li><a href="#">Culture <span>(12)</span></a></li>
+                            <li><a href="#">Musique <span>(5)</span></a></li>
+                            <li><a href="#">Sport <span>(22)</span></a></li>
+                            <li><a href="#">religieux <span>(8)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200" id="liste-evenements">
+                {% for evenement in evenements %}
+                    {% if loop.index % 2 == 1 %}
+                        <div class="row gy-5 posts-list">
+                    {% endif %}
+                    <div class="col-lg-6">
+                        <article class="d-flex flex-column">
+                            <div class="post-img">
+                                <img src="{{ path('evenement_show', {'id': evenement.idEv}) }}" class="post-image" />
+                            </div>
+                            <h2 class="title">
+                                <a href="blog-details.html">{{ evenement.titreEv }}</a>
+                            </h2>
+                            <div class="meta-top">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="blog-details.html">{{ evenement.adresseEv }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html">{{ evenement.dateEv ? evenement.dateEv|date('Y-m-d H:i:s') : '' }}</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <p>{{ evenement.descriptionEv }}</p>
+                            </div>
+                            {% if evenement.getNbrePlaces() > 0 %}
+                                <form method="post" action="{{ path('app_event_participate', {'idEv': evenement.idEv}) }}">
+                                    <button type="submit" class="btn btn-primary">Participer</button>
+                                    <a href="{{path('app_twilio_sms')}}" class="btn">Envoyer sms<i class="fas fa-home"></i>  </a>
+                                </form>
+                            {% else %}
+                                <p>L'événement est complet.</p>
+                            {% endif %}
+                            {#{% if evenement.getNbrePlaces() > 0 %}
+                                <form method="post" action="{{ path('app_event_participate', {'idEv': evenement.idEv}) }}">
+                                    <button type="submit" class="btn btn-primary">Participer</button>
+                                </form>
+                                <a href="{{ path('send_sms', {'idEv': evenement.idEv}) }}" class="btn btn-primary">Envoyer un SMS</a>
+                            {% else %}
+                                <p>L'événement est complet.</p>
+                            {% endif %}#}
+                            <div class="read-more mt-auto align-self-end">
+                                <a href="{{ path('app_event_show', {'idEv': evenement.idEv}) }}">Plus de détails<i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                    {% if loop.index % 2 == 0 or loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="blog-pagination">
+                    <ul class="justify-content-center">
+                        <li>{{ knp_pagination_render(evenements) }}</li>
+                    </ul>
+                </div>
+              
+
+                
+
+             </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+    
+    <style>
+    .posts-list .col-lg-6 {
+        margin-bottom: 30px;
+    }
+    .post-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+ </style>
+ 
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+{% block js %}
+{#<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>#}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#select-tri').change(function() {
+      var tri = $(this).val();
+      $.ajax({
+        url: "{{ path('tri_evenements') }}",
+        method: "POST",
+        data: {tri: tri},
+        success: function(data) {
+          $('#liste-evenements').html(data);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
+
