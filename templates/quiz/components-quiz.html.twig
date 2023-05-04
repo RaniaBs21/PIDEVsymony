@@ -9,27 +9,27 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-   {% block css %}
-  <link href="{{asset('img/favicon.png')}}" rel="icon">
-  <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <!-- Favicons -->y
+  {% block css %}
+    <link href="{{asset('img/favicon.png')}}" rel="icon">
+    <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/quill/quill.snow.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/quill/quill.bubble.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-  <link href="{{asset('vendor/simple-datatables/style.css')}}" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/quill/quill.snow.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
-{% endblock %}
+    <!-- Template Main CSS File -->
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+  {% endblock %}
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Updated: Mar 09 2023 with Bootstrap v5.2.3
@@ -38,8 +38,8 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
-<body>
+{% block body %}
+  <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -54,7 +54,7 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <input type="text" class="form-control" id="myInput" placeholder="search">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -213,7 +213,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{asset('img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">kh.Nour</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -282,7 +282,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-     {# <li class="nav-item">
+      {# <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -451,8 +451,8 @@
           </li>
         </ul>
       </li><!-- End Icons Nav -->
-#}
-     
+      #}
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ path ('user') }}">
@@ -468,7 +468,7 @@
         </a>
       </li>
       <!-- End Profile Page Nav -->
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{path ('post')}}">
           <i class="bi bi-question-circle"></i>
@@ -490,19 +490,19 @@
         </a>
       </li>
 
-     <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{path ('produit')}}">
           <i class="bi bi-question-circle"></i>
           <span>Produits</span>
         </a>
-      </li> 
-     
-     <li class="nav-item">
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{path ('quiz')}}">
           <i class="bi bi-question-circle"></i>
           <span>Quiz</span>
         </a>
-      </li> 
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{path ('assistance')}}">
@@ -546,609 +546,126 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>General Tables</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">General</li>
-        </ol>
-      </nav>
+      <h1>Tous les Quizs</h1>
+
     </div><!-- End Page Title -->
 
     <section class="section">
+
       <div class="row">
-        <div class="col-lg-6">
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Default Table</h5>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Quiz</h5>
 
-              <!-- Default Table -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Default Table Example -->
-            </div>
+
+            <!-- Default Table -->
+            <a href="{{ path('ajoutquiz') }}"><img src="{{ asset('/img/ajouter.png') }}" height="40" width="40" /></a>
+
+            <table class="table table-hover align-middle" id="myTable">
+
+            <thead>
+              <tr>
+
+                <th scope="col">Titre</th>
+                <th scope="col">Question</th>
+                <th scope="col">Option1</th>
+                <th scope="col">Option2</th>
+                <th scope="col">Option3</th>
+                <th scope="col">Option4</th>
+                <th scope="col">Réponse correcte</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              {% for quiz in quiz %}
+                <tr>
+
+                  <td>{{ quiz.titre }}</td>
+                  <td>{{ quiz.question }}</td>
+                  <td>{{ quiz.option1 }}</td>
+                  <td>{{ quiz.option2 }}</td>
+                  <td>{{ quiz.option3 }}</td>
+                  <td>{{ quiz.option4 }}</td>
+                  <td>{{ quiz.reponseCorrecte }}</td>
+
+
+                  <td>
+                    <a href="{{ path('quiz_update', {'idQuiz': quiz.idQuiz }) }}"><img src="{{ asset('/img/crayon.png') }}" height="20" width="20" /></a>
+                    <a href="{{ path('quiz_delete', {'idQuiz': quiz.idQuiz }) }}" onclick="if(!confirm('Êtes-vous sûr de vouloir supprimer ce quiz ?')) return false;">
+                      <img src="{{ asset('/img/supprimer.png') }}" height="20" width="20" class="delete-link"/>
+                    </a>
+
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+
+            </thead>
+
+            </table>
+
+            </tbody>
+
+
+            <!-- End Default Table Example -->
           </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dark Table</h5>
-
-              <!-- Dark Table -->
-              <table class="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Dark Table -->
-
-            </div>
+          <div class="blog-pagination">
+            <ul class="justify-content-center">
+              <li>{{ knp_pagination_render(quiz) }}</li>
+            </ul>
           </div>
+          <style>
+            .blog-pagination {
+              margin-top: 30px;
+              text-align: center;
+            }
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Active Table</h5>
-              <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p>
-              <!-- Active Table -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td class="table-active">Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td class="table-active">2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td class="table-active">Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Active Table -->
+            .blog-pagination ul {
+              list-style: none;
+              display: inline-block;
+              margin: 0;
+              padding: 0;
+            }
 
-            </div>
-          </div>
+            .blog-pagination li {
+              display: inline-block;
+              margin: 0;
+              padding: 0;
+            }
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Tables without borders</h5>
-              <p>Add <code>.table-borderless</code> for a table without borders.</p>
-              <!-- Active Table -->
-              <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Tables without borders -->
+            .blog-pagination li a {
+              display: inline-block;
+              padding: 10px;
+              margin: 0 5px;
+              color: #333;
+              border-radius: 3px;
+              background-color: #fff;
+              border: 1px solid #ccc;
+              text-decoration: none;
+              transition: all 0.2s ease-in-out;
+            }
 
-            </div>
-          </div>
+            .blog-pagination li.active a {
+              background-color: #007bff;
+              color: #fff;
+              border-color: #007bff;
+            }
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Table Variants</h5>
-              <p>Use contextual classes <code>.table-primary .table-secondary .table-success .table-danger .table-warning .table-info .table-light .table-dark</code> to color tables, table rows or individual cells.</p>
-              <!-- Table Variants -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Heading</th>
-                    <th scope="col">Heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Default</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-
-                  <tr class="table-primary">
-                    <th scope="row">Primary</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-secondary">
-                    <th scope="row">Secondary</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-success">
-                    <th scope="row">Success</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-danger">
-                    <th scope="row">Danger</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-warning">
-                    <th scope="row">Warning</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-info">
-                    <th scope="row">Info</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-light">
-                    <th scope="row">Light</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                  <tr class="table-dark">
-                    <th scope="row">Dark</th>
-                    <td>Cell</td>
-                    <td>Cell</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table Variants -->
-
-            </div>
-          </div>
+            .blog-pagination li.disabled a {
+              opacity: 0.5;
+              pointer-events: none;
+            }
+          </style>
 
         </div>
 
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Table with stripped rows</h5>
-
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Table with hoverable rows</h5>
-
-              <!-- Table with hoverable rows -->
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with hoverable rows -->
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Bordered Table</h5>
-              <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
-              <!-- Bordered Table -->
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Bordered Table -->
-
-              <p><a href="https://getbootstrap.com/docs/5.0/utilities/borders/#border-color" target="_blank">Border color utilities</a> can be added to change colors:</p>
-
-              <!-- Primary Color Bordered Table -->
-              <table class="table table-bordered border-primary">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Primary Color Bordered Table -->
-
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Small tables</h5>
-              <p>Add <code>.table-sm</code> to make any <code>.table</code> more compact by cutting all cell padding in half.</p>
-              <!-- Small tables -->
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End small tables -->
-
-            </div>
-          </div>
-
-        </div>
       </div>
+
+
     </section>
 
   </main><!-- End #main -->
@@ -1165,23 +682,40 @@
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
       Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  {% block javascripts %}
+    <!-- Vendor JS Files -->
+    <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
+    <script src="{{asset('vendor/echarts/echarts.min.js')}}"></script>
+    <script src="{{asset('vendor/quill/quill.min.js')}}"></script>
+    <script src="{{asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
+    <script src="{{asset('vendor/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
 
-  <!-- Vendor JS Files -->
-  <script src="{{asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
-  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('vendor/chart.js/chart.umd.js')}}"></script>
-  <script src="{{asset('vendor/echarts/echarts.min.js')}}"></script>
-  <script src="{{asset('vendor/quill/quill.min.js')}}"></script>
-  <script src="{{asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
-  <script src="{{asset('vendor/tinymce/tinymce.min.js')}}"></script>
-  <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      console.log("hello");
+      $(document).ready(function () {
 
+        $("#myInput").on("keyup", function () {
+
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
+  {% endblock %}
   <!-- Template Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
 
-</body>
+  </body>
+{% endblock %}
 
 </html>

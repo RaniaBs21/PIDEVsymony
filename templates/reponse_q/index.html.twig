@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReponseQuiz index{% endblock %}
+
+{% block body %}
+    <h1>ReponseQuiz index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdRep</th>
+                <th>Option1</th>
+                <th>Option2</th>
+                <th>Option3</th>
+                <th>Option4</th>
+                <th>ReponseCorrecte</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse_quiz in reponse_quizzes %}
+            <tr>
+                <td>{{ reponse_quiz.idRep }}</td>
+                <td>{{ reponse_quiz.option1 }}</td>
+                <td>{{ reponse_quiz.option2 }}</td>
+                <td>{{ reponse_quiz.option3 }}</td>
+                <td>{{ reponse_quiz.option4 }}</td>
+                <td>{{ reponse_quiz.reponseCorrecte }}</td>
+                <td>
+                    <a href="{{ path('app_reponse_q_show', {'idRep': reponse_quiz.idRep}) }}">show</a>
+                    <a href="{{ path('app_reponse_q_edit', {'idRep': reponse_quiz.idRep}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reponse_q_new') }}">Create new</a>
+{% endblock %}

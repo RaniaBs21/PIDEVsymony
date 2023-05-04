@@ -1,0 +1,36 @@
+{% extends 'home/base.html.twig' %}
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <h1>Cart index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCart</th>
+                <th>IdProd</th>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cart in carts %}
+            <tr>
+                <td>{{ cart.idCart }}</td>
+                <td>{{ cart.idProd }}</td>
+                <td>{{ cart.id }}</td>
+                <td>
+                    <a href="{{ path('app_cart_show', {'idCart': cart.idCart}) }}">show</a>
+                    <a href="{{ path('app_cart_edit', {'idCart': cart.idCart}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cart_new') }}">Create new</a>
+{% endblock %}

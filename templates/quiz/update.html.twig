@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% block title %}ArtPlus{% endblock %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+
+        .slideInUp {
+            animation-name: slideInUp;
+            animation-duration: 1s;
+        }
+    </style>
+
+    <!-- Favicons -->
+    {% block css %}
+        <link href="{{asset('img/favicon.png')}}" rel="icon">
+        <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+        <!-- Vendor CSS Files -->
+        <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/quill/quill.snow.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/simple-datatables/style.css')}}" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    {% endblock %}
+    <!-- =======================================================
+    * Template Name: NiceAdmin
+    * Updated: Mar 09 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+{% block body %}
+<body>
+    <h1 class="text-center mb-5">Modifier le quiz "{{ quiz.titre }}"</h1>
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Quiz</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover animated slideInUp">
+                               </thead>
+                                <tbody>
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                {% for quiz in quiz %}
+                                    <tr class="animated fadeIn">
+                                        <td>{{ quiz.id }}</td>
+                                        <td>{{ quiz.titre }}</td>
+                                        <td>{{ quiz.question }}</td>
+                                        <td>{{ quiz.option1 }}</td>
+                                        <td>{{ quiz.option2 }}</td>
+                                        <td>{{ quiz.option3 }}</td>
+                                        <td>{{ quiz.option4 }}</td>
+                                        <td>{{ quiz.reponseCorrecte }}</td>
+                                        <td class="text-center">
+                                            <button type="submit"class="button">
+                                                <i class="fas fa-edit"></i>Modifier
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <script>
+        $(document).ready(function() {
+            $('table').addClass('animated slideInUp');
+            $('thead').addClass('animated fadeIn');
+            $('tbody tr').addClass('animated fadeIn');
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

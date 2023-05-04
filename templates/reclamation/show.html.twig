@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reclamation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdRec</th>
+                <td>{{ reclamation.idRec }}</td>
+            </tr>
+            <tr>
+                <th>TypeRec</th>
+                <td>{{ reclamation.typeRec }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionRec</th>
+                <td>{{ reclamation.descriptionRec }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+
+    <a href="{{ path('app_reclamation_edit', {'idRec': reclamation.idRec}) }}">edit</a>
+
+    {{ include('reclamation/_delete_form.html.twig') }}
+{% endblock %}

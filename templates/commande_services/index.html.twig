@@ -1,0 +1,40 @@
+
+
+{% extends 'home/base.html.twig' %}
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+    <h1>Commande </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID commande</th>
+                <th>Date du commande</th>
+                <th>Date du livraison</th>
+                <th>ID du panier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.idCmd }}</td>
+                <td>{{ commande.dateCmd ? commande.dateCmd|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.dateLiv ? commande.dateLiv|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.idCart }}</td>
+                <td>
+                    <a href="{{ path('app_commande_services_show', {'idCmd': commande.idCmd}) }}">show</a>
+                    <a href="{{ path('app_commande_services_edit', {'idCmd': commande.idCmd}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_services_new') }}">Create new</a>
+{% endblock %}

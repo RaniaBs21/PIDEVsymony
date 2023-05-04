@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Commande
@@ -26,24 +28,24 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="Date_Cmd", type="date", nullable=false)
-     */
+     * @Assert\GreaterThanOrEqual("today", message="La date de commande ne peut pas être ultérieure à aujourd'hui")
+    */
     private $dateCmd;
+
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="Date_Liv", type="date", nullable=false)
-     */
+     * @Assert\GreaterThan(propertyPath="dateCmd", message="La date de livraison doit être ultérieure à la date de commande")
+    */
     private $dateLiv;
 
+
     /**
-     * @var \Cart
-     *
-     * @ORM\ManyToOne(targetEntity="Cart")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Id_Cart", referencedColumnName="Id_Cart")
-     * })
-     */
+    * @var int|null
+    * @ORM\Column(name="Id_Cart", type="integer", nullable=true)
+    */
     private $idCart;
 
     public function getIdCmd(): ?int
@@ -75,12 +77,12 @@ class Commande
         return $this;
     }
 
-    public function getIdCart(): ?Cart
+    public function getIdCart(): ?int
     {
         return $this->idCart;
     }
 
-    public function setIdCart(?Cart $idCart): self
+    public function setIdCart(?int $idCart): self
     {
         $this->idCart = $idCart;
 

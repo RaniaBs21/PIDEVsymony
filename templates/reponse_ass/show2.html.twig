@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>My PDF</title>
+        <style>
+            /* force the delete form to appear on a new page */
+            .page-break {
+                page-break-after: always;
+            }
+
+            /* Add some styles to make the PDF look nice */
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                line-height: 1.5;
+                background-color: #f7f7f7;
+                color: #333;
+            }
+
+            h1 {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #007bff;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            /* Add some colors */
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .col-md-12 {
+                width: 100%;
+            }
+
+            .btn-danger {
+                color: #fff;
+                background-color: #dc3545;
+                border-color: #dc3545;
+            }
+
+            .btn-danger:hover {
+                color: #fff;
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+        </style>
+    </head>
+    <body>
+        {% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>VOICI LE REPONSE A VOTRE QUESTION!</h1>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Votre Id</th>
+                        <td>{{ reponse_ass.idRepAss }}</td>
+                    </tr>
+                    <tr>
+                        <th>Le Type de votre Reponse</th>
+                        <td>{{ reponse_ass.typeRepAss }}</td>
+                    </tr>
+                    <tr>
+                        <th>La Question correspondante</th>
+                        <td>{{ reponse_ass.queRepAss }}</td>
+                    </tr>
+                    <tr>
+                        <th>La Description Reponse</th>
+                        <td>{{ reponse_ass.descriptionRepAss }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Merci pour votre Confiance! , Je te souhaite une bonne journée Artplus support team</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+                    <div class="page-break"></div>
+                    {{ include('reponse_ass/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
+
+
+
+
+

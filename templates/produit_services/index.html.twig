@@ -1,0 +1,80 @@
+{% extends 'home/base.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+    <h1>Produit index</h1>
+<input type="text" id="nom" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdProd</th>
+                <th>IdCatProd</th>
+                <th>TypeProd</th>
+                <th>DescriptionProd</th>
+                <th>PrixProd</th>
+                <th>Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.idProd }}</td>
+                <td>{{ produit.idCatProd }}</td>
+                <td>{{ produit.typeProd }}</td>
+                <td>{{ produit.descriptionProd }}</td>
+                <td>{{ produit.prixProd }}</td>
+                <td>{{ produit.url }}</td>
+                <td>
+                    <a href="{{ path('app_produit_services_show', {'idProd': produit.idProd}) }}">Afficher ce produit</a>
+                    <a href="{{ path('app_produit_services_edit', {'idProd': produit.idProd}) }}">Modifier ce produit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_services_new') }}">Ajouter un produit</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+    $(document).ready(function() {
+        $('#nom').on('input', function() {
+            var nom = $(this).val();
+            var showUrl = '{{ path('app_produit_services_show', {'idProd': '_idProd_'}) }}';
+            var editUrl = '{{ path('app_produit_services_edit', {'idProd': '_idProd_'}) }}';
+            $.ajax({
+                url: '{{ path('app_produit_rechercher') }}',
+                method: 'POST',
+                data: {'type': nom},
+                success: function(response) {
+                    var produits = response.produits;
+                    var tbody = $('.table tbody');
+                    tbody.empty();
+                    produits.forEach(function(produit) {
+                        var tr = $('<tr>');
+                        tr.append('<td>' + produit.idProd + '</td>');
+                        tr.append('<td>' + produit.idCatProd + '</td>');
+                        tr.append('<td>' + produit.typeProd + '</td>');
+                        tr.append('<td>' + produit.descriptionProd + '</td>');
+                        tr.append('<td>' + produit.prixProd + '</td>');
+                        tr.append('<td>' + produit.url + '</td>');
+                        var tdActions = $('<td>');
+                        tdActions.append('<a href="' + showUrl.replace('_idProd_', produit.idProd) + '"><span class="badge badge-sm bg-gradient-success"> show </span></a>');
+                        tdActions.append('<a href="' + editUrl.replace('_idProd_', produit.idProd) + '"><span class="badge badge-sm bg-gradient-secondary"> edit </span></a>');
+                        tr.append(tdActions);
+                        tbody.append(tr);
+                    });
+                },
+                error: function(response) {
+                    console.log(response); 
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

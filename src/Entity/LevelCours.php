@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\FormTypeInterface ;
 
 /**
  * LevelCours
@@ -25,15 +27,14 @@ class LevelCours
      * @var string
      *
      * @ORM\Column(name="Nom_level", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Nom est obligatoire")
+     * @Assert\Length(min=1, max=255, minMessage="Titre doit contenir au moins {{ limit }} caractère", maxMessage="Titre doit contenir au maximum {{ limit }} caractères")
+     
      */
+     
     private $nomLevel;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_c", type="integer", nullable=false)
-     */
-    private $idC;
+  
 
     public function getIdLevel(): ?int
     {
@@ -52,17 +53,6 @@ class LevelCours
         return $this;
     }
 
-    public function getIdC(): ?int
-    {
-        return $this->idC;
-    }
-
-    public function setIdC(int $idC): self
-    {
-        $this->idC = $idC;
-
-        return $this;
-    }
-
+    
 
 }

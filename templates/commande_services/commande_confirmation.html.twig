@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de commande</title>
+</head>
+<body>
+    <h1>Votre commande est confirmée</h1>
+    <p>Date de commande: {{ date_commande|date('Y-m-d H:i:s') }}</p>
+    <p>Date de livraison: {{ date_livraison|date('Y-m-d H:i:s') }}</p>
+</body>
+</html>

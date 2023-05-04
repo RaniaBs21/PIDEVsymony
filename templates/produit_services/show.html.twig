@@ -1,0 +1,43 @@
+{% extends 'home/base.html.twig' %}
+
+{% block head_title %}Produit{% endblock %}
+
+
+{% block body %}
+    <h1>Produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdProd</th>
+                <td>{{ produit.idProd }}</td>
+            </tr>
+            <tr>
+                <th>IdCatProd</th>
+                <td>{{ produit.idCatProd }}</td>
+            </tr>
+            <tr>
+                <th>TypeProd</th>
+                <td>{{ produit.typeProd }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionProd</th>
+                <td>{{ produit.descriptionProd }}</td>
+            </tr>
+            <tr>
+                <th>PrixProd</th>
+                <td>{{ produit.prixProd }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ produit.url }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_services_index') }}">back to list</a>
+
+    <a href="{{ path('app_produit_services_edit', {'idProd': produit.idProd}) }}">edit</a>
+
+    {{ include('produit_services/_delete_form.html.twig') }}
+{% endblock %}

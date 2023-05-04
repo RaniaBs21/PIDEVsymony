@@ -5,6 +5,11 @@ namespace App\Controller\BackendController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Swift_SmtpTransport;
+use Swift_Message;
+use Swift_Mailer;
+use Psr\Log\LoggerInterface;
 
 class HomeController extends AbstractController
 {
@@ -51,7 +56,7 @@ class HomeController extends AbstractController
             'controller_name' => 'ProduitController',
         ]);
     }
-    #[Route('/quiz', name: 'quiz')]
+    #[Route('/quizAdmin', name: 'quizAdmin')]
     public function quiz(): Response
     {
         return $this->render('quiz/components-quiz.html.twig', [
@@ -66,20 +71,7 @@ class HomeController extends AbstractController
         ]);
 
     }
-    #[Route('/register', name: 'register')]
-    public function register(): Response
-    {
-        return $this->render('user/register.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+   
 
-    }
-    #[Route('/login', name: 'login')]
-    public function login(): Response
-    {
-        return $this->render('user/login.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-
-    }
+   
 }

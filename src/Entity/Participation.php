@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
+use App\Repository\ParticipationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+
 
 /**
  * Participation
  *
- * @ORM\Table(name="participation", indexes={@ORM\Index(name="iduser", columns={"id"}), @ORM\Index(name="idev", columns={"id_ev"})})
- * @ORM\Entity
+ * @ORM\Table(name="participation", indexes={@ORM\Index(name="idev", columns={"id_ev"}), @ORM\Index(name="iduser", columns={"Id_Ut"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ParticipationRepository")
  */
 class Participation
 {
@@ -23,16 +26,22 @@ class Participation
     private $idPart;
 
     /**
-     * @var int
+     * @var \Admin
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Ut", referencedColumnName="id")
+     * })
      */
-    private $id;
+    private ?Admin $idU = null;
 
     /**
-     * @var int
+     * @var \Evenement
      *
-     * @ORM\Column(name="id_ev", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Evenement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_ev", referencedColumnName="id_ev")
+     * })
      */
     private $idEv;
 
@@ -48,29 +57,30 @@ class Participation
         return $this->idPart;
     }
 
-    public function getId(): ?int
+    public function getIdU(): ?Admin
     {
-        return $this->id;
+        return $this->idU;
     }
 
-    public function setId(int $id): self
+    public function setIdU(Admin $idU): self
     {
-        $this->id = $id;
+        $this->idU = $idU;
 
         return $this;
     }
 
-    public function getIdEv(): ?int
+    public function getIdEv(): ?Evenement
     {
         return $this->idEv;
     }
 
-    public function setIdEv(int $idEv): self
+    public function setIdEv(?Evenement $idEv): self
     {
         $this->idEv = $idEv;
 
         return $this;
     }
+
 
     public function getDateParticipation(): ?\DateTimeInterface
     {
@@ -84,5 +94,10 @@ class Participation
         return $this;
     }
 
+    public function __construct()
+    {
+        $this->dateParticipation = new DateTime('now');
+    }
+    
 
 }

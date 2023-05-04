@@ -1,0 +1,28 @@
+ <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="{{path ('app_home_front')}}" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{{asset('img/logo1.png')}}" alt=""> 
+        <h1 class="d-flex align-items-center">ArtPlus</h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" class="active">A Propos</a></li>
+          <li><a href="about.html">Acceuil</a></li>
+          <li><a href="services.html">Evenements</a></li>
+          <li><a href="{{ path('frontcours') }}">Cours</a></li>
+          <li><a href="team.html">Produits</a></li>
+          <li><a href="blog.html">Quiz</a></li>
+           <li><a href="blog.html">Assistance</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

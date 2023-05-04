@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Table des reponses</h1>
+
+    <form method="get" action="{{ path('app_reponse_ass_search') }}">
+        <div class="form-group">
+            <label>Type Reponse:</label>
+            <input type="text" class="form-control" name="typeRepAss" value="{{ app.request.query.get('typeRepAss') }}">
+        </div>
+        <div class="form-group">
+            <label>Sort by:</label>
+            <select class="form-control" name="sort">
+                <option value="idRepAss" {% if app.request.query.get('sort') == 'idRepAss' %}selected{% endif %}>Id</option>
+                <option value="typeRepAss" {% if app.request.query.get('sort') == 'typeRepAss' %}selected{% endif %}>Type Reponse</option>
+                <option value="queRepAss" {% if app.request.query.get('sort') == 'queRepAss' %}selected{% endif %}>Question correspondante</option>
+                <option value="descriptionRepAss" {% if app.request.query.get('sort') == 'descriptionRepAss' %}selected{% endif %}>Description Reponse</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Direction:</label>
+            <select class="form-control" name="direction">
+                <option value="ASC" {% if app.request.query.get('direction') == 'ASC' %}selected{% endif %}>Ascending</option>
+                <option value="DESC" {% if app.request.query.get('direction') == 'DESC' %}selected{% endif %}>Descending</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type Reponse</th>
+                <th>Question correspondante</th>
+                <th>Description Reponse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse_ass in reponse_asses %}
+            <tr>
+                <td>{{ reponse_ass.typeRepAss }}</td>
+                <td>{{ reponse_ass.queRepAss }}</td>
+                <td>{{ reponse_ass.descriptionRepAss }}</td>
+                <td>
+                    <a href="{{ path('app_reponse_ass_show', {'idRepAss': reponse_ass.idRepAss}) }}">show</a>
+                    <a href="{{ path('app_reponse_ass_edit', {'idRepAss': reponse_ass.idRepAss}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reponse_ass_new') }}">Create new</a>
+{% endblock %}

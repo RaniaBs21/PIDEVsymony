@@ -1,0 +1,14 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+  <div class="mb-3">
+    {{ form_label(form.typeQAss, 'Question', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.typeQAss, {'attr': {'class': 'form-control'}}) }}
+  </div>
+
+  <div class="mb-3">
+    {{ form_label(form.descriptionQAss, 'Description du question', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.descriptionQAss, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.descriptionQAss, {'attr': {'class': 'invalid-feedback'}}) }}
+  </div>
+
+  <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>CategorieProd</title>
+
+{% block body %}
+    <h1>CategorieProd</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdCatProd</th>
+                <td>{{ categorie_prod.idCatProd }}</td>
+            </tr>
+            <tr>
+                <th>NomCatProd</th>
+                <td>{{ categorie_prod.nomCatProd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_catrgorie_prod_index') }}">back to list</a>
+
+    <a href="{{ path('app_catrgorie_prod_edit', {'idCatProd': categorie_prod.idCatProd}) }}">edit</a>
+
+    {{ include('catrgorie_prod/_delete_form.html.twig') }}
+{% endblock %}

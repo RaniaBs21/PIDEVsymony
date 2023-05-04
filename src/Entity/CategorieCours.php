@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CategorieCours
@@ -25,6 +26,9 @@ class CategorieCours
      * @var string
      *
      * @ORM\Column(name="Nom_cat", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Nom est obligatoire")
+     * @Assert\Length(min=1, max=255, minMessage="Titre doit contenir au moins {{ limit }} caractère", maxMessage="Titre doit contenir au maximum {{ limit }} caractères")
+     
      */
     private $nomCat;
 

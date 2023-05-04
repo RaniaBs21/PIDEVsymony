@@ -57,7 +57,7 @@ class ReponseQuiz
     private $reponseCorrecte;
 
     /**
-     * @var \QuestionQuiz
+     * @var
      *
      * @ORM\ManyToOne(targetEntity="QuestionQuiz")
      * @ORM\JoinColumns({

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SousCategorie
@@ -25,6 +26,8 @@ class SousCategorie
      * @var string
      *
      * @ORM\Column(name="Nom_sc", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     * @Assert\Length(min=1, max=255, minMessage="Le nom doit contenir au moins {{ limit }} caractère", maxMessage="Titre doit contenir au maximum {{ limit }} caractères")
      */
     private $nomSc;
 
@@ -34,6 +37,14 @@ class SousCategorie
      * @ORM\Column(name="id_categorie", type="integer", nullable=false)
      */
     private $idCategorie;
+
+    /**
+     * @var CategorieCours
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategorieCours")
+     * @ORM\JoinColumn(name="id_categorie", referencedColumnName="Id_cat")
+     */
+    private $categorieCours;
 
     public function getIdSc(): ?int
     {
@@ -64,5 +75,16 @@ class SousCategorie
         return $this;
     }
 
+    public function getCategorieCours(): ?CategorieCours
+    {
+        return $this->categorieCours;
+    }
+
+    public function setCategorieCours(?CategorieCours $categorieCours): self
+    {
+        $this->categorieCours = $categorieCours;
+
+        return $this;
+    }
 
 }

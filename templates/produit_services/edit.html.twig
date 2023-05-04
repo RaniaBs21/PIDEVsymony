@@ -1,0 +1,13 @@
+{% extends 'home/base.html.twig' %}
+
+{% block head_title %}New Produit{% endblock %}
+
+{% block body %}
+    <h1>Edit Produit</h1>
+
+    {{ include('produit_services/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_produit_services_index') }}">back to list</a>
+
+    {{ include('produit_services/_delete_form.html.twig') }}
+{% endblock %}

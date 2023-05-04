@@ -1,0 +1,17 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+  <div class="mb-3">
+    {{ form_label(form.typeRec, 'Type du reclamation', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.typeRec, {'attr': {'class': 'form-control'}}) }}
+  </div>
+
+  <div class="mb-3">
+    {{ form_label(form.descriptionRec, 'Description du reclamation', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.descriptionRec, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.descriptionRec, {'attr': {'class': 'invalid-feedback'}}) }}
+  </div>
+
+
+ <div class="mb-3">
+  <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+  </div>
+{{ form_end(form) }}

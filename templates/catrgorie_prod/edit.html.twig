@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit CategorieProd</title>
+
+{% block body %}
+    <h1>Edit CategorieProd</h1>
+
+    {{ include('catrgorie_prod/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_catrgorie_prod_index') }}">back to list</a>
+
+    {{ include('catrgorie_prod/_delete_form.html.twig') }}
+{% endblock %}

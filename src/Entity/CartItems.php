@@ -39,6 +39,12 @@ class CartItems
     {
         return $this->idCartItem;
     }
+    public function setIdCartItem(int $idCartItem): self
+    {
+        $this->idCart = $idCartItem;
+
+        return $this;
+    }
 
     public function getIdCart(): ?int
     {

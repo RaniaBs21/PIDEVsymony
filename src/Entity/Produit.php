@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Produit
@@ -26,6 +28,7 @@ class Produit
      * @var int
      *
      * @ORM\Column(name="id_cat_prod", type="integer", nullable=false)
+     * @Assert\NotBlank(message="Il faut choisir une categorie")
      */
     private $idCatProd;
 
@@ -33,13 +36,19 @@ class Produit
      * @var string
      *
      * @ORM\Column(name="Type_Prod", type="string", length=20, nullable=false)
+     * @Assert\NotBlank(message="Le nom du produit ne peut pas etre vide")
      */
     private $typeProd;
-
-    /**
+/**
      * @var string
      *
-     * @ORM\Column(name="Description_Prod", type="text", length=65535, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="La description ne peut pas être vide")
+     * 
+     * @Assert\Regex(
+     * pattern="/^[a-zA-Z0-9\s]+$/",
+     * message="La description doit contenir uniquement des lettres, des chiffres et des espaces"
+     * )
      */
     private $descriptionProd;
 

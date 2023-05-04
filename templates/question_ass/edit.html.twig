@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 style="color: #007bff;">Formulaire de Reclamation</h1>
+
+    {{ include('question_ass/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_question_ass_index') }}">back to list</a>
+
+    {{ include('question_ass/_delete_form.html.twig') }}
+{% endblock %}
+

@@ -1,3 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_produit_rechercher:
+    path: '/produit/rechercher'
+    controller: App\Controller\ProduitServicesController::rechercher
+    methods: ['POST']
+
+app_forgot_password:
+    path: '/forgot-password'
+    controller: 'App\Controller\SecurityController::forgotPassword'
+    methods: ['GET', 'POST']

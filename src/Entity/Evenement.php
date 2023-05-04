@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement", indexes={@ORM\Index(name="iduser", columns={"id_g"}), @ORM\Index(name="id_g", columns={"id_g"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EvenementRepository")
  */
 class Evenement
 {
@@ -26,6 +27,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="titre_ev", type="string", length=100, nullable=false)
+     * @Assert\NotBlank
      */
     private $titreEv;
 
@@ -33,6 +35,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="categorie_ev", type="string", length=50, nullable=false)
+     * @Assert\NotBlank
      */
     private $categorieEv;
 
@@ -40,13 +43,14 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="description_ev", type="string", length=200, nullable=false)
+     * @Assert\NotBlank
      */
     private $descriptionEv;
 
     /**
-     * @var string
-     *
+     * 
      * @ORM\Column(name="image_ev", type="blob", length=0, nullable=false)
+     * @Assert\NotBlank
      */
     private $imageEv;
 
@@ -54,6 +58,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="adresse_ev", type="string", length=30, nullable=false)
+     * @Assert\NotBlank
      */
     private $adresseEv;
 
@@ -61,6 +66,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="region", type="string", length=30, nullable=false)
+     * @Assert\NotBlank
      */
     private $region;
 
@@ -68,22 +74,27 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="date_ev", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @Assert\NotBlank
      */
-    private $dateEv = 'CURRENT_TIMESTAMP';
+    private $dateEv;
 
     /**
      * @var int
      *
      * @ORM\Column(name="nbre_places", type="integer", nullable=false)
+     * @Assert\NotBlank
      */
     private $nbrePlaces;
 
     /**
-     * @var int
+     * @var \Admin
      *
-     * @ORM\Column(name="id_g", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_g", referencedColumnName="id")
+     * })
      */
-    private $idG;
+    private ?Admin $idG = null;
 
     public function getIdEv(): ?int
     {
@@ -186,12 +197,12 @@ class Evenement
         return $this;
     }
 
-    public function getIdG(): ?int
+    public function getIdG(): ?Admin
     {
         return $this->idG;
     }
 
-    public function setIdG(int $idG): self
+    public function setIdG(Admin $idG): self
     {
         $this->idG = $idG;
 

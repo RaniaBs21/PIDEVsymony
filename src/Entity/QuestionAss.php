@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * QuestionAss
@@ -26,6 +27,8 @@ class QuestionAss
      * @var string
      *
      * @ORM\Column(name="Type_Q_Ass", type="string", length=20, nullable=false)
+     * @Assert\NotBlank(message="Type Q Ass is required")
+     * @Assert\Length(max=20, maxMessage="Type Q Ass should be at most {{ limit }} characters")
      */
     private $typeQAss;
 
@@ -33,15 +36,11 @@ class QuestionAss
      * @var string
      *
      * @ORM\Column(name="Description_Q_Ass", type="text", length=65535, nullable=false)
+     * @Assert\NotBlank(message="Description Q Ass is required")
      */
     private $descriptionQAss;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_Rec", type="integer", nullable=false)
-     */
-    private $idRec;
+
 
     public function getIdQAss(): ?int
     {
@@ -72,17 +71,6 @@ class QuestionAss
         return $this;
     }
 
-    public function getIdRec(): ?int
-    {
-        return $this->idRec;
-    }
-
-    public function setIdRec(int $idRec): self
-    {
-        $this->idRec = $idRec;
-
-        return $this;
-    }
 
 
 }
