@@ -14,17 +14,16 @@
 <body>
 
 <div class="container">
-    <div><div class="sharethis-inline-share-buttons"></div></div>
+
 
     {% if score > 200 %}
         <div class="container">
             <div class="flex-center flex-column">
                 <h2 class="congratulations">Congratulations!</h2>
-                <p class="score">Your score is {{ new }}</p>
+                {% set score = app.session.get('score') %}
+                <p class="score" id="score">Your score is </p>
                 <p class="emoji">🎉👏🎉👏</p>
-                <a href="{{ path('quiz_save_score')}}" class="btn">Save Score<i class="fas fa-home"></i></a>
-                <a href="{{ path('app_quiz')}}" class="btn">Play Again</a>
-                <a href="{{ path('app_index')}}" class="btn">Go Home<i class="fas fa-home"></i></a>
+
             </div>
         </div>
     {% elseif score > 100 %}
@@ -38,10 +37,15 @@
     {% else %}
         <div class="container">
             <div class="flex-center flex-column">
-                <h2 class="motivation">Vous pouvez faire mieux!</h2>
-                <p class="score">Your score is {{ new }}</p>
-                <p class="emoji">👊👊</p>
+                <h2 class="congratulations">Congratulations!</h2>
+                {% set score = app.session.get('score') %}
+                <h2 class="score" id="score" style="color: white;">Your score is 100</h2>
 
+                <p class="emoji">🎉👏🎉👏</p>
+                <a href="{{ path('quiz_save_score')}}" class="btn">Save Score<i class="fas fa-home"></i></a>
+                <a href="{{ path('app_quiz')}}" class="btn">Play Again</a>
+                <a href="{{ path('app_index')}}" class="btn">Go Home<i class="fas fa-home"></i></a>
+                <a href="{{path('send_sms')}}" class="btn">Envoyer resultat<i class="fas fa-home"></i>  </a>
             </div>
         </div>
 
@@ -77,19 +81,6 @@
         }
     </style>
 
-    <div id="end" class="flex-center flex-column">
-
-
-        <p>Votre score est : {{ new }}</p>
-        <h2 id="end-text">Enter your name below to save your score!</h2>
-
-
-        <button class="btn" type="submit" form="score-form" onclick="window.location.href='{{ path('quiz_save_score')}}'">Save<i class="fas fa-home"></i></button>
-
-        <a href="{{path('app_quiz')}}" class="btn">Play Again</a>
-        <a href="{{path('app_index')}}" class="btn">Go Home<i class="fas fa-home"></i>  </a>
-        <a href="{{path('send_sms')}}" class="btn">Envoyer resultat<i class="fas fa-home"></i>  </a>
-    </div>
 
 
 </div>
