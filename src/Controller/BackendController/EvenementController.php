@@ -13,6 +13,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+#[Route('/evenement')]
+class EvenementController extends AbstractController
+{
+    #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $evenements = $entityManager
+            ->getRepository(Evenement::class)
+            ->findAll();
+
+        return $this->render('evenement/index.html.twig', [
+            'evenements' => $evenements,
+        ]);
+    }
 
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
