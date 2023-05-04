@@ -10,7 +10,9 @@ use App\Repository\AdminRepository;
  *
  * @ORM\Table(name="admin")
  *@ORM\Entity(repositoryClass="App\Repository\AdminRepository")
-
+ */
+class Admin
+{
     /**
      * @var int
      *
