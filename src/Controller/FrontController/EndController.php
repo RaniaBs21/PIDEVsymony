@@ -18,7 +18,8 @@ class EndController extends AbstractController
     #[Route('/end', name: 'end')]
     public function dx(ManagerRegistry $doctrine, Request $request, ): Response
     {
-
+        $score = $request->query->get('score');
+        $this->get('session')->set('score', $score);
         return $this->redirectToRoute('quiz_save_score');
 
 
